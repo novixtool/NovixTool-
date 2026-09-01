@@ -3,90 +3,244 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Image Compressor - Novix Tool</title>
 
 <style>
+*{
+  box-sizing:border-box;
+}
+
 body{
-  font-family:Arial,sans-serif;
-  background:#f5f7fb;
   margin:0;
-  padding:20px;
-  text-align:center;
+  font-family:Arial,sans-serif;
+  background:#f3f4f6;
+  color:#111827;
 }
 
-.box{
-  max-width:500px;
-  margin:40px auto;
+.container{
+  max-width:600px;
+  margin:30px auto;
+  padding:15px;
+}
+
+.card{
   background:white;
-  padding:30px;
-  border-radius:15px;
-  box-shadow:0 5px 20px rgba(0,0,0,.08);
+  border-radius:18px;
+  padding:25px;
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
 }
 
-h1{margin-bottom:10px}
+h1{
+  text-align:center;
+  margin:0 0 8px;
+}
 
-input{
-  margin:20px 0;
+.subtitle{
+  text-align:center;
+  color:#6b7280;
+  margin-bottom:25px;
+}
+
+.upload{
+  border:2px dashed #9ca3af;
+  border-radius:14px;
+  padding:25px;
+  text-align:center;
+  margin-bottom:20px;
+}
+
+input[type="file"]{
   max-width:100%;
 }
 
-#preview{
-  display:none;
-  max-width:100%;
-  max-height:300px;
-  margin:15px auto;
-  border-radius:10px;
+.option{
+  margin:18px 0;
+}
+
+label{
+  display:block;
+  font-weight:bold;
+  margin-bottom:8px;
+}
+
+select,
+input[type="number"]{
+  width:100%;
+  padding:12px;
+  border:1px solid #d1d5db;
+  border-radius:8px;
+  font-size:16px;
+}
+
+input[type="range"]{
+  width:100%;
+}
+
+.value{
+  text-align:center;
+  font-weight:bold;
+  margin-top:5px;
 }
 
 button{
+  width:100%;
+  padding:14px;
+  border:0;
+  border-radius:9px;
   background:#111827;
   color:white;
-  border:0;
-  padding:12px 22px;
-  border-radius:8px;
+  font-size:17px;
   cursor:pointer;
-  font-size:16px;
-  margin:10px;
+  margin-top:10px;
 }
 
 button:disabled{
   opacity:.5;
 }
 
-#compressBtn,
-#downloadBtn,
-#info{
+#preview{
   display:none;
+  width:100%;
+  max-height:350px;
+  object-fit:contain;
+  border-radius:12px;
+  margin:20px 0;
 }
 
-a{
-  color:#111827;
+#result{
+  display:none;
+  background:#f3f4f6;
+  border-radius:10px;
+  padding:15px;
+  margin-top:20px;
+  text-align:center;
+}
+
+.back{
+  display:block;
+  text-align:center;
+  margin-top:20px;
   text-decoration:none;
+  color:#111827;
+}
+
+.small{
+  color:#6b7280;
+  font-size:13px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="box">
+<div class="container">
+
+<div class="card">
 
 <h1>Image Compressor</h1>
 
-<p>Compress your image easily and download it.</p>
+<p class="subtitle">
+Compress your image with your own settings.
+</p>
+
+<div class="upload">
 
 <input type="file" id="imageInput" accept="image/*">
 
+<p class="small">
+JPG, PNG, WEBP and other common image formats
+</p>
+
+</div>
+
 <img id="preview">
 
-<p id="info"></p>
+<div class="option">
 
-<button id="compressBtn">Compress Image</button>
+<label>Target Size (KB)</label>
 
-<button id="downloadBtn">Download Compressed Image</button>
+<input
+type="number"
+id="targetSize"
+value="200"
+min="10"
+max="5000"
+>
 
-<br>
+<p class="small">
+Example: 200 KB means the tool will try to make the image around 200 KB.
+</p>
 
-<a href="index.html">← Back to Novix Tool</a>
+</div>
+
+<div class="option">
+
+<label>Image Quality</label>
+
+<input
+type="range"
+id="quality"
+min="10"
+max="100"
+value="80"
+>
+
+<div class="value">
+<span id="qualityValue">80</span>%
+</div>
+
+</div>
+
+<div class="option">
+
+<label>Maximum Width</label>
+
+<select id="maxWidth">
+
+<option value="0">Original Size</option>
+<option value="1920">1920 px</option>
+<option value="1280" selected>1280 px</option>
+<option value="1000">1000 px</option>
+<option value="800">800 px</option>
+<option value="600">600 px</option>
+
+</select>
+
+</div>
+
+<div class="option">
+
+<label>Output Format</label>
+
+<select id="format">
+
+<option value="image/jpeg">JPG</option>
+<option value="image/webp">WEBP</option>
+
+</select>
+
+</div>
+
+<button id="compressBtn" disabled>
+Compress Image
+</button>
+
+<div id="result">
+
+<p id="resultText"></p>
+
+<button id="downloadBtn">
+Download Compressed Image
+</button>
+
+</div>
+
+<a class="back" href="index.html">
+← Back to Novix Tool
+</a>
+
+</div>
 
 </div>
 
@@ -95,81 +249,172 @@ a{
 const imageInput = document.getElementById("imageInput");
 const preview = document.getElementById("preview");
 const compressBtn = document.getElementById("compressBtn");
+
+const quality = document.getElementById("quality");
+const qualityValue = document.getElementById("qualityValue");
+
+const targetSize = document.getElementById("targetSize");
+const maxWidth = document.getElementById("maxWidth");
+const format = document.getElementById("format");
+
+const result = document.getElementById("result");
+const resultText = document.getElementById("resultText");
 const downloadBtn = document.getElementById("downloadBtn");
-const info = document.getElementById("info");
 
 let selectedFile = null;
 let compressedBlob = null;
+
+
+/* Quality slider */
+
+quality.addEventListener("input", function(){
+
+  qualityValue.textContent = this.value;
+
+});
+
+
+/* Select image */
 
 imageInput.addEventListener("change", function(){
 
   selectedFile = this.files[0];
 
   if(!selectedFile){
+    compressBtn.disabled = true;
     return;
   }
 
   preview.src = URL.createObjectURL(selectedFile);
+
   preview.style.display = "block";
 
-  info.style.display = "block";
-  info.innerHTML =
-    "Original size: " +
-    (selectedFile.size / 1024).toFixed(1) +
-    " KB";
+  compressBtn.disabled = false;
 
-  compressBtn.style.display = "inline-block";
-  downloadBtn.style.display = "none";
-  compressedBlob = null;
+  result.style.display = "none";
 
 });
+
+
+/* Compress */
 
 compressBtn.addEventListener("click", function(){
 
   if(!selectedFile){
-    alert("Please select an image first.");
+    alert("Please select an image.");
     return;
   }
+
+  compressBtn.disabled = true;
+  compressBtn.textContent = "Compressing...";
 
   const img = new Image();
 
   img.onload = function(){
 
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
-
     let width = img.width;
     let height = img.height;
 
-    const maxWidth = 1200;
+    const selectedWidth = Number(maxWidth.value);
 
-    if(width > maxWidth){
+    if(selectedWidth > 0 && width > selectedWidth){
 
-      height = height * (maxWidth / width);
-      width = maxWidth;
+      height = Math.round(
+        height * (selectedWidth / width)
+      );
+
+      width = selectedWidth;
 
     }
+
+    const canvas = document.createElement("canvas");
 
     canvas.width = width;
     canvas.height = height;
 
-    ctx.drawImage(img,0,0,width,height);
+    const ctx = canvas.getContext("2d");
 
-    canvas.toBlob(function(blob){
+    ctx.drawImage(
+      img,
+      0,
+      0,
+      width,
+      height
+    );
 
-      compressedBlob = blob;
 
-      info.innerHTML =
-        "Original: " +
-        (selectedFile.size / 1024).toFixed(1) +
-        " KB<br>" +
-        "Compressed: " +
-        (blob.size / 1024).toFixed(1) +
-        " KB";
+    let currentQuality = Number(quality.value) / 100;
 
-      downloadBtn.style.display = "inline-block";
+    const wantedKB = Number(targetSize.value);
 
-    },"image/jpeg",0.6);
+    function createBlob(){
+
+      canvas.toBlob(function(blob){
+
+        if(!blob){
+
+          alert("Compression failed.");
+
+          compressBtn.disabled = false;
+          compressBtn.textContent = "Compress Image";
+
+          return;
+        }
+
+        const sizeKB = blob.size / 1024;
+
+        /*
+        Try to reach target size
+        */
+
+        if(
+          sizeKB > wantedKB &&
+          currentQuality > 0.1
+        ){
+
+          currentQuality -= 0.05;
+
+          canvas.toBlob(
+            function(newBlob){
+
+              compressedBlob = newBlob;
+
+              const newSize =
+                newBlob.size / 1024;
+
+              if(
+                newSize > wantedKB &&
+                currentQuality > 0.1
+              ){
+
+                createBlob();
+
+              }else{
+
+                showResult(
+                  newBlob
+                );
+
+              }
+
+            },
+            format.value,
+            currentQuality
+          );
+
+        }else{
+
+          compressedBlob = blob;
+
+          showResult(blob);
+
+        }
+
+      },format.value,currentQuality);
+
+    }
+
+    createBlob();
 
   };
 
@@ -177,19 +422,72 @@ compressBtn.addEventListener("click", function(){
 
 });
 
+
+/* Show result */
+
+function showResult(blob){
+
+  const originalKB =
+    selectedFile.size / 1024;
+
+  const compressedKB =
+    blob.size / 1024;
+
+  const saved =
+    Math.max(
+      0,
+      100 - (compressedKB / originalKB * 100)
+    );
+
+  result.style.display = "block";
+
+  resultText.innerHTML =
+    "Original: " +
+    originalKB.toFixed(1) +
+    " KB<br><br>" +
+
+    "Compressed: " +
+    compressedKB.toFixed(1) +
+    " KB<br><br>" +
+
+    "Saved: " +
+    saved.toFixed(1) +
+    "%";
+
+  compressBtn.disabled = false;
+
+  compressBtn.textContent = "Compress Image";
+
+}
+
+
+/* Download */
+
 downloadBtn.addEventListener("click", function(){
 
   if(!compressedBlob){
-    alert("Please compress the image first.");
     return;
   }
 
-  const url = URL.createObjectURL(compressedBlob);
+  const url =
+    URL.createObjectURL(compressedBlob);
 
-  const link = document.createElement("a");
+  const link =
+    document.createElement("a");
 
   link.href = url;
-  link.download = "novix-compressed-image.jpg";
+
+  if(format.value === "image/webp"){
+
+    link.download =
+      "novix-compressed-image.webp";
+
+  }else{
+
+    link.download =
+      "novix-compressed-image.jpg";
+
+  }
 
   document.body.appendChild(link);
 
