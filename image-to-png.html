@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image to PNG Converter - Novix Tool</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #1f2937;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 22px 15px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .box {
+            background: white;
+            padding: 35px 25px;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        .upload {
+            display: block;
+            margin: 25px auto;
+            padding: 18px;
+            border: 2px dashed #2563eb;
+            border-radius: 12px;
+            cursor: pointer;
+            background: #f8fafc;
+        }
+
+        input[type="file"] {
+            width: 100%;
+        }
+
+        #preview {
+            max-width: 100%;
+            max-height: 350px;
+            margin: 20px auto;
+            display: none;
+            border-radius: 10px;
+        }
+
+        button {
+            display: none;
+            border: none;
+            background: #2563eb;
+            color: white;
+            padding: 13px 25px;
+            border-radius: 9px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 25px;
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #64748b;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>⚡ Novix Tool</h1>
+    <p>Free Online Tools for Everyone</p>
+</header>
+
+<div class="container">
+
+    <div class="box">
+
+        <h2>🖼️ Image to PNG Converter</h2>
+
+        <p>Convert your image to PNG format quickly and easily.</p>
+
+        <div class="upload">
+            <input type="file" id="imageInput" accept="image/*">
+        </div>
+
+        <img id="preview" alt="Image Preview">
+
+        <button id="downloadBtn">Download PNG</button>
+
+        <br>
+
+        <a class="back" href="index.html">← Back to Novix Tool</a>
+
+    </div>
+
+</div>
+
+<footer>
+    © 2026 Novix Tool. All Rights Reserved.
+</footer>
+
+<script>
+    const imageInput = document.getElementById("imageInput");
+    const preview = document.getElementById("preview");
+    const downloadBtn = document.getElementById("downloadBtn");
+
+    let selectedImage = null;
+
+    imageInput.addEventListener("change", function () {
+
+        const file = this.files[0];
+
+        if (!file) {
+            return;
+        }
+
+        if (!file.type.startsWith("image/")) {
+            alert("Please select an image file.");
+            return;
+        }
+
+        selectedImage = file;
+
+        const reader = new FileReader();
+
+        reader.onload = function (event) {
+            preview.src = event.target.result;
+            preview.style.display = "block";
+            downloadBtn.style.display = "inline-block";
+        };
+
+        reader.readAsDataURL(file);
+    });
+
+    downloadBtn.addEventListener("click", function () {
+
+        const img = new Image();
+
+        img.onload = function () {
+
+            const canvas = document.createElement("canvas");
+
+            canvas.width = img.width;
+            canvas.height = img.height;
+
+            const ctx = canvas.getContext("2d");
+
+            ctx.drawImage(img, 0, 0);
+
+            canvas.toBlob(function (blob) {
+
+                const url = URL.createObjectURL(blob);
+
+                const link = document.createElement("a");
+
+                link.href = url;
+                link.download = "novix-tool-image.png";
+
+                link.click();
+
+                URL.revokeObjectURL(url);
+
+            }, "image/png");
+        };
+
+        img.src = preview.src;
+    });
+</script>
+
+</body>
+</html>
