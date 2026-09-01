@@ -128,61 +128,57 @@ Download QR Code
 
 <script>
 
-const textInput =
-document.getElementById("text");
+const textInput = document.getElementById("text");
+const generateBtn = document.getElementById("generateBtn");
+const qrBox = document.getElementById("qrBox");
+const qrImage = document.getElementById("qrImage");
+const downloadBtn = document.getElementById("downloadBtn");
 
-const generateBtn =
-document.getElementById("generateBtn");
+generateBtn.addEventListener("click", function () {
 
-const qrBox =
-document.getElementById("qrBox");
+  const text = textInput.value.trim();
 
-const qrImage =
-document.getElementById("qrImage");
-
-const downloadBtn =
-document.getElementById("downloadBtn");
-
-
-generateBtn.addEventListener("click", function(){
-
-  const text =
-  textInput.value.trim();
-
-  if(!text){
-
+  if (!text) {
     alert("Please enter some text or a URL.");
-
     return;
-
   }
 
   const qrUrl =
-  "https://api.qrserver.com/v1/create-qr-code/?size=500x500&data="
-  + encodeURIComponent(text);
+    "https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=" +
+    encodeURIComponent(text);
 
   qrImage.src = qrUrl;
-
   qrBox.style.display = "block";
 
 });
 
 
-downloadBtn.addEventListener("click", function(){
+downloadBtn.addEventListener("click", async function () {
 
-  const link =
-  document.createElement("a");
+  try {
 
-  link.href = qrImage.src;
+    const response = await fetch(qrImage.src);
 
-  link.download =
-  "novix-qr-code.png";
+    const blob = await response.blob();
 
-  document.body.appendChild(link);
+    const url = URL.createObjectURL(blob);
 
-  link.click();
+    const link = document.createElement("a");
 
-  document.body.removeChild(link);
+    link.href = url;
+    link.download = "novix-qr-code.png";
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+
+  } catch (error) {
+
+    alert("Download failed. Please try again.");
+
+  }
 
 });
 
