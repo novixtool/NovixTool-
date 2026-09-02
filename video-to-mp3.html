@@ -5,7 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Video to MP3 Converter - Novix Tool</title>
-  <meta name="description" content="Convert video to MP3 online for free with Novix Tool. Fast, simple and browser-based.">
+
+  <meta
+    name="description"
+    content="Convert video to MP3 online for free with Novix Tool."
+  >
 
   <style>
     * {
@@ -27,18 +31,18 @@
 
     .container {
       max-width: 720px;
-      margin: 0 auto;
+      margin: auto;
     }
 
     .top {
       text-align: center;
-      margin: 35px 0 25px;
+      padding: 35px 0 25px;
     }
 
     .logo {
       font-size: 25px;
       font-weight: bold;
-      margin-bottom: 12px;
+      margin-bottom: 15px;
     }
 
     .logo span {
@@ -53,10 +57,11 @@
     .subtitle {
       color: #aab3c5;
       line-height: 1.6;
+      font-size: 16px;
     }
 
     .card {
-      background: rgba(17, 24, 39, 0.78);
+      background: rgba(17, 24, 39, 0.80);
       border: 1px solid rgba(255,255,255,0.10);
       border-radius: 22px;
       padding: 28px;
@@ -65,17 +70,16 @@
     }
 
     .upload {
+      display: block;
       border: 2px dashed #4652a5;
       border-radius: 18px;
       padding: 35px 20px;
       text-align: center;
       cursor: pointer;
-      transition: .2s;
     }
 
     .upload:hover {
       border-color: #7c8cff;
-      background: rgba(124,140,255,0.06);
     }
 
     .upload-icon {
@@ -84,7 +88,7 @@
     }
 
     .upload-title {
-      font-size: 18px;
+      font-size: 19px;
       font-weight: bold;
       margin-bottom: 8px;
     }
@@ -100,13 +104,13 @@
 
     .status {
       margin-top: 20px;
-      padding: 14px;
-      border-radius: 12px;
+      padding: 15px;
+      border-radius: 13px;
       background: rgba(255,255,255,0.05);
       color: #cbd5e1;
       text-align: center;
       font-size: 14px;
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
     .video-box {
@@ -116,9 +120,9 @@
 
     video {
       width: 100%;
-      max-height: 350px;
-      border-radius: 14px;
-      background: #000;
+      max-height: 360px;
+      border-radius: 15px;
+      background: black;
     }
 
     .progress-wrap {
@@ -156,10 +160,10 @@
 
     button,
     .download {
-      flex: 1;
+      width: 100%;
       border: 0;
       border-radius: 12px;
-      padding: 14px 18px;
+      padding: 15px;
       font-size: 15px;
       font-weight: bold;
       cursor: pointer;
@@ -170,6 +174,11 @@
     .convert {
       background: linear-gradient(90deg, #4f7cff, #8b5cf6);
       color: white;
+    }
+
+    .convert:disabled {
+      opacity: .6;
+      cursor: not-allowed;
     }
 
     .reset {
@@ -206,12 +215,12 @@
         padding: 14px;
       }
 
-      h1 {
-        font-size: 28px;
-      }
-
       .card {
         padding: 20px;
+      }
+
+      h1 {
+        font-size: 28px;
       }
 
       .buttons {
@@ -223,306 +232,576 @@
 
 <body>
 
-  <div class="container">
+<div class="container">
 
-    <div class="top">
-      <div class="logo">Novix <span>Tool</span></div>
+  <div class="top">
 
-      <h1>Video to MP3</h1>
-
-      <p class="subtitle">
-        Convert your video into an MP3 audio file quickly and easily.
-      </p>
+    <div class="logo">
+      Novix <span>Tool</span>
     </div>
 
-    <div class="card">
+    <h1>Video to MP3</h1>
 
-      <label class="upload" for="videoInput">
-        <div class="upload-icon">🎥</div>
-
-        <div class="upload-title">
-          Select a Video
-        </div>
-
-        <div class="upload-text">
-          MP4, MOV, WEBM and other common video formats
-        </div>
-      </label>
-
-      <input
-        type="file"
-        id="videoInput"
-        accept="video/*"
-      >
-
-      <div class="status" id="status">
-        👆 Select a video to start
-      </div>
-
-      <div class="video-box" id="videoBox">
-        <video id="videoPreview" controls></video>
-      </div>
-
-      <div class="progress-wrap" id="progressWrap">
-
-        <div class="progress-bar">
-          <div class="progress" id="progress"></div>
-        </div>
-
-        <div class="progress-text" id="progressText">
-          0%
-        </div>
-
-      </div>
-
-      <div class="buttons" id="buttons">
-
-        <button class="convert" id="convertBtn">
-          🎵 Convert to MP3
-        </button>
-
-        <button class="reset" id="resetBtn">
-          🔄 Reset
-        </button>
-
-      </div>
-
-      <a
-        id="downloadBtn"
-        class="download"
-        download="Novix-Tool-Audio.mp3"
-      >
-        ⬇️ Download MP3
-      </a>
-
-      <div class="note">
-        Your video is processed directly in your browser.
-        It is not uploaded to our server.
-      </div>
-
-    </div>
-
-    <a class="back" href="index.html">
-      ← Back to Novix Tool
-    </a>
+    <p class="subtitle">
+      Convert your video into an MP3 audio file quickly and easily.
+    </p>
 
   </div>
 
 
-  <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js"></script>
-  <script src="https://unpkg.com/@ffmpeg/core@0.11.6/dist/ffmpeg-core.js"></script>
+  <div class="card">
 
-  <script>
+    <label class="upload" for="videoInput">
 
-    const { createFFmpeg, fetchFile } = FFmpeg;
+      <div class="upload-icon">
+        🎥
+      </div>
 
-    const ffmpeg = createFFmpeg({
-      log: false,
-      corePath:
-        "https://unpkg.com/@ffmpeg/core@0.11.6/dist/ffmpeg-core.js"
-    });
+      <div class="upload-title">
+        Select a Video
+      </div>
 
-    const videoInput = document.getElementById("videoInput");
-    const status = document.getElementById("status");
+      <div class="upload-text">
+        MP4, MOV, WEBM and other common video formats
+      </div>
 
-    const videoBox = document.getElementById("videoBox");
-    const videoPreview = document.getElementById("videoPreview");
-
-    const buttons = document.getElementById("buttons");
-    const convertBtn = document.getElementById("convertBtn");
-    const resetBtn = document.getElementById("resetBtn");
-
-    const progressWrap = document.getElementById("progressWrap");
-    const progress = document.getElementById("progress");
-    const progressText = document.getElementById("progressText");
-
-    const downloadBtn = document.getElementById("downloadBtn");
-
-    let selectedFile = null;
-    let outputUrl = null;
+    </label>
 
 
-    ffmpeg.setProgress(({ ratio }) => {
-
-      const percent = Math.max(
-        0,
-        Math.min(100, Math.round(ratio * 100))
-      );
-
-      progress.style.width = percent + "%";
-      progressText.textContent =
-        "Converting... " + percent + "%";
-
-    });
+    <input
+      type="file"
+      id="videoInput"
+      accept="video/*"
+    >
 
 
-    videoInput.addEventListener("change", function () {
-
-      const file = this.files[0];
-
-      if (!file) return;
-
-      selectedFile = file;
-
-      if (outputUrl) {
-        URL.revokeObjectURL(outputUrl);
-        outputUrl = null;
-      }
-
-      downloadBtn.style.display = "none";
-
-      const videoUrl = URL.createObjectURL(file);
-
-      videoPreview.src = videoUrl;
-
-      videoBox.style.display = "block";
-      buttons.style.display = "flex";
-
-      status.innerHTML =
-        "📂 Video selected: <b>" +
-        file.name +
-        "</b><br><br>" +
-        "Ready to convert.";
-
-    });
+    <div class="status" id="status">
+      👆 Select a video to start
+    </div>
 
 
-    convertBtn.addEventListener("click", async function () {
+    <div class="video-box" id="videoBox">
 
-      if (!selectedFile) {
-        status.textContent =
-          "❌ Please select a video first.";
-        return;
-      }
+      <video
+        id="videoPreview"
+        controls
+        playsinline
+      ></video>
 
-      try {
+    </div>
 
-        convertBtn.disabled = true;
 
-        resetBtn.disabled = true;
+    <div class="progress-wrap" id="progressWrap">
 
-        progressWrap.style.display = "block";
+      <div class="progress-bar">
+        <div class="progress" id="progress"></div>
+      </div>
 
-        progress.style.width = "0%";
+      <div class="progress-text" id="progressText">
+        0%
+      </div>
 
-        progressText.textContent =
-          "Loading AI conversion engine...";
+    </div>
 
-        status.textContent =
-          "⏳ Loading converter for the first time...";
 
-        if (!ffmpeg.isLoaded()) {
-          await ffmpeg.load();
-        }
+    <div class="buttons" id="buttons">
 
-        status.textContent =
-          "⚙️ Preparing your video...";
+      <button
+        class="convert"
+        id="convertBtn"
+      >
+        🎵 Convert to MP3
+      </button>
 
-        const inputName =
-          "input_" + Date.now() + ".mp4";
+      <button
+        class="reset"
+        id="resetBtn"
+      >
+        🔄 Reset
+      </button>
 
-        await ffmpeg.FS(
-          "writeFile",
-          inputName,
-          await fetchFile(selectedFile)
+    </div>
+
+
+    <a
+      id="downloadBtn"
+      class="download"
+      download="Novix-Tool-Audio.mp3"
+    >
+      ⬇️ Download MP3
+    </a>
+
+
+    <div class="note">
+      Your video is processed directly in your browser.
+      It is not uploaded to our server.
+    </div>
+
+  </div>
+
+
+  <a
+    class="back"
+    href="index.html"
+  >
+    ← Back to Novix Tool
+  </a>
+
+</div>
+
+
+<!-- FFmpeg -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ffmpeg/0.12.10/umd/ffmpeg.min.js"></script>
+
+<script src="https://unpkg.com/@ffmpeg/util@0.12.1/dist/umd/index.js"></script>
+
+
+<script>
+
+const videoInput =
+  document.getElementById("videoInput");
+
+const status =
+  document.getElementById("status");
+
+const videoBox =
+  document.getElementById("videoBox");
+
+const videoPreview =
+  document.getElementById("videoPreview");
+
+const buttons =
+  document.getElementById("buttons");
+
+const convertBtn =
+  document.getElementById("convertBtn");
+
+const resetBtn =
+  document.getElementById("resetBtn");
+
+const progressWrap =
+  document.getElementById("progressWrap");
+
+const progress =
+  document.getElementById("progress");
+
+const progressText =
+  document.getElementById("progressText");
+
+const downloadBtn =
+  document.getElementById("downloadBtn");
+
+
+let selectedFile = null;
+
+let outputUrl = null;
+
+let ffmpeg = null;
+
+let ffmpegLoaded = false;
+
+
+/* ---------------------------------
+   Create FFmpeg
+--------------------------------- */
+
+function createEngine() {
+
+  if (!window.FFmpegWASM) {
+
+    throw new Error(
+      "FFmpeg library did not load."
+    );
+
+  }
+
+  ffmpeg =
+    new FFmpegWASM.FFmpeg();
+
+}
+
+
+/* ---------------------------------
+   Load FFmpeg
+--------------------------------- */
+
+async function loadFFmpeg() {
+
+  if (ffmpegLoaded) {
+    return;
+  }
+
+  status.innerHTML =
+    "📦 Loading video converter...<br>" +
+    "Please wait for the first setup.";
+
+  createEngine();
+
+
+  const {
+    toBlobURL
+  } = FFmpegUtil;
+
+
+  const baseURL =
+    "https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.10/dist/umd";
+
+
+  ffmpeg.on(
+    "progress",
+    ({ progress: value }) => {
+
+      const percent =
+        Math.max(
+          0,
+          Math.min(
+            100,
+            Math.round(value * 100)
+          )
         );
 
-        status.textContent =
-          "🎵 Converting video to MP3...";
+      progress.style.width =
+        percent + "%";
 
-        const outputName =
-          "Novix-Tool-Audio.mp3";
+      progressText.textContent =
+        "Converting... " +
+        percent +
+        "%";
 
-        await ffmpeg.run(
-          "-i",
-          inputName,
-          "-vn",
-          "-acodec",
-          "libmp3lame",
-          "-b:a",
-          "192k",
+    }
+  );
+
+
+  await ffmpeg.load({
+
+    coreURL:
+      await toBlobURL(
+        baseURL +
+        "/ffmpeg-core.js",
+        "text/javascript"
+      ),
+
+    wasmURL:
+      await toBlobURL(
+        baseURL +
+        "/ffmpeg-core.wasm",
+        "application/wasm"
+      )
+
+  });
+
+
+  ffmpegLoaded = true;
+
+}
+
+
+/* ---------------------------------
+   Select Video
+--------------------------------- */
+
+videoInput.addEventListener(
+  "change",
+  function () {
+
+    const file =
+      this.files[0];
+
+    if (!file) {
+      return;
+    }
+
+
+    selectedFile = file;
+
+
+    if (outputUrl) {
+
+      URL.revokeObjectURL(
+        outputUrl
+      );
+
+      outputUrl = null;
+
+    }
+
+
+    downloadBtn.style.display =
+      "none";
+
+
+    const videoURL =
+      URL.createObjectURL(file);
+
+
+    videoPreview.src =
+      videoURL;
+
+
+    videoBox.style.display =
+      "block";
+
+
+    buttons.style.display =
+      "flex";
+
+
+    status.innerHTML =
+      "📂 Video selected:<br>" +
+      "<b>" +
+      file.name +
+      "</b><br><br>" +
+      "Ready to convert.";
+
+  }
+);
+
+
+/* ---------------------------------
+   Convert
+--------------------------------- */
+
+convertBtn.addEventListener(
+  "click",
+  async function () {
+
+    if (!selectedFile) {
+
+      status.textContent =
+        "❌ Please select a video first.";
+
+      return;
+
+    }
+
+
+    try {
+
+      convertBtn.disabled =
+        true;
+
+      resetBtn.disabled =
+        true;
+
+
+      progressWrap.style.display =
+        "block";
+
+
+      progress.style.width =
+        "0%";
+
+
+      progressText.textContent =
+        "Loading converter...";
+
+
+      await loadFFmpeg();
+
+
+      status.innerHTML =
+        "⚙️ Preparing video...";
+
+
+      const inputName =
+        "input_" +
+        Date.now() +
+        ".mp4";
+
+
+      const outputName =
+        "novix_audio.mp3";
+
+
+      status.innerHTML =
+        "📥 Reading your video...";
+
+
+      const {
+        fetchFile
+      } = FFmpegUtil;
+
+
+      await ffmpeg.writeFile(
+        inputName,
+        await fetchFile(selectedFile)
+      );
+
+
+      status.innerHTML =
+        "🎵 Converting video to MP3...";
+
+
+      await ffmpeg.exec([
+
+        "-i",
+        inputName,
+
+        "-vn",
+
+        "-map",
+        "0:a:0",
+
+        "-codec:a",
+        "libmp3lame",
+
+        "-b:a",
+        "192k",
+
+        "-ar",
+        "44100",
+
+        outputName
+
+      ]);
+
+
+      status.innerHTML =
+        "📦 Preparing MP3 download...";
+
+
+      const data =
+        await ffmpeg.readFile(
           outputName
         );
 
-        const data =
-          ffmpeg.FS(
-            "readFile",
-            outputName
-          );
 
-        const blob =
-          new Blob(
-            [data.buffer],
-            { type: "audio/mpeg" }
-          );
-
-        outputUrl =
-          URL.createObjectURL(blob);
-
-        downloadBtn.href = outputUrl;
-
-        downloadBtn.style.display = "block";
-
-        progress.style.width = "100%";
-
-        progressText.textContent =
-          "100% Complete";
-
-        status.innerHTML =
-          "✅ <b>Conversion complete!</b><br>" +
-          "Your MP3 is ready to download.";
-
-        try {
-          ffmpeg.FS("unlink", inputName);
-          ffmpeg.FS("unlink", outputName);
-        } catch (e) {}
-
-      } catch (error) {
-
-        console.error(error);
-
-        status.innerHTML =
-          "❌ <b>Conversion failed.</b><br>" +
-          "Try a smaller video or another video format.";
-
-      }
-
-      convertBtn.disabled = false;
-      resetBtn.disabled = false;
-
-    });
+      const blob =
+        new Blob(
+          [data.buffer],
+          {
+            type: "audio/mpeg"
+          }
+        );
 
 
-    resetBtn.addEventListener("click", function () {
+      outputUrl =
+        URL.createObjectURL(blob);
 
-      if (outputUrl) {
-        URL.revokeObjectURL(outputUrl);
-        outputUrl = null;
-      }
 
-      selectedFile = null;
+      downloadBtn.href =
+        outputUrl;
 
-      videoInput.value = "";
 
-      videoPreview.removeAttribute("src");
-      videoPreview.load();
+      downloadBtn.style.display =
+        "block";
 
-      videoBox.style.display = "none";
 
-      buttons.style.display = "none";
+      progress.style.width =
+        "100%";
 
-      progressWrap.style.display = "none";
 
-      downloadBtn.style.display = "none";
+      progressText.textContent =
+        "100% Complete";
 
-      progress.style.width = "0%";
 
-      status.textContent =
-        "👆 Select a video to start";
+      status.innerHTML =
+        "✅ <b>Conversion complete!</b><br>" +
+        "Your MP3 is ready.";
 
-    });
 
-  </script>
+      try {
+
+        await ffmpeg.deleteFile(
+          inputName
+        );
+
+        await ffmpeg.deleteFile(
+          outputName
+        );
+
+      } catch (e) {}
+
+    }
+
+    catch (error) {
+
+      console.error(
+        "FFmpeg error:",
+        error
+      );
+
+
+      status.innerHTML =
+        "❌ <b>Conversion failed.</b><br><br>" +
+        "Try a smaller video or another format.";
+
+    }
+
+
+    convertBtn.disabled =
+      false;
+
+    resetBtn.disabled =
+      false;
+
+  }
+);
+
+
+/* ---------------------------------
+   Reset
+--------------------------------- */
+
+resetBtn.addEventListener(
+  "click",
+  function () {
+
+    if (outputUrl) {
+
+      URL.revokeObjectURL(
+        outputUrl
+      );
+
+      outputUrl = null;
+
+    }
+
+
+    selectedFile = null;
+
+    videoInput.value = "";
+
+
+    videoPreview.removeAttribute(
+      "src"
+    );
+
+    videoPreview.load();
+
+
+    videoBox.style.display =
+      "none";
+
+
+    buttons.style.display =
+      "none";
+
+
+    progressWrap.style.display =
+      "none";
+
+
+    downloadBtn.style.display =
+      "none";
+
+
+    progress.style.width =
+      "0%";
+
+
+    progressText.textContent =
+      "0%";
+
+
+    status.textContent =
+      "👆 Select a video to start";
+
+  }
+);
+
+</script>
 
 </body>
-  </html>
+</html>
