@@ -53,7 +53,7 @@ header{
     position:sticky;
     top:0;
     z-index:10;
-    background:rgba(7,11,23,.8);
+    background:rgba(7,11,23,.82);
     backdrop-filter:blur(15px);
     border-bottom:1px solid rgba(255,255,255,.08);
 }
@@ -68,7 +68,7 @@ header{
 }
 
 .logo{
-    color:white;
+    color:#fff;
     text-decoration:none;
     font-size:22px;
     font-weight:800;
@@ -81,6 +81,7 @@ header{
 .back{
     color:#cbd5e1;
     text-decoration:none;
+    font-size:15px;
 }
 
 .container{
@@ -98,7 +99,7 @@ header{
     display:inline-block;
     padding:8px 14px;
     border-radius:30px;
-    background:rgba(37,99,235,.1);
+    background:rgba(37,99,235,.10);
     border:1px solid rgba(96,165,250,.25);
     color:#93c5fd;
     font-size:13px;
@@ -108,18 +109,22 @@ header{
 h1{
     font-size:clamp(32px,6vw,52px);
     margin-bottom:14px;
+    line-height:1.1;
 }
 
 .hero p{
     color:#94a3b8;
     line-height:1.7;
+    max-width:700px;
+    margin:auto;
 }
 
 .tool-box{
-    background:rgba(15,23,42,.7);
+    background:rgba(15,23,42,.70);
     border:1px solid rgba(255,255,255,.09);
     border-radius:24px;
     padding:25px;
+    box-shadow:0 25px 70px rgba(0,0,0,.25);
 }
 
 .upload{
@@ -129,6 +134,7 @@ h1{
     text-align:center;
     cursor:pointer;
     background:rgba(37,99,235,.04);
+    display:block;
 }
 
 .upload:active{
@@ -162,6 +168,10 @@ input[type="file"]{
     color:#cbd5e1;
     text-align:center;
     font-size:14px;
+    min-height:46px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
 .progress-wrap{
@@ -207,6 +217,7 @@ input[type="file"]{
 .preview-card h3{
     color:#cbd5e1;
     margin-bottom:12px;
+    font-size:17px;
 }
 
 .preview{
@@ -218,12 +229,15 @@ input[type="file"]{
     justify-content:center;
 
     background-color:#111827;
+
     background-image:
         linear-gradient(45deg,#1f2937 25%,transparent 25%),
         linear-gradient(-45deg,#1f2937 25%,transparent 25%),
         linear-gradient(45deg,transparent 75%,#1f2937 75%),
         linear-gradient(-45deg,transparent 75%,#1f2937 75%);
+
     background-size:24px 24px;
+
     background-position:
         0 0,
         0 12px,
@@ -261,7 +275,7 @@ button{
 }
 
 .download{
-    color:white;
+    color:#fff;
     background:linear-gradient(135deg,#2563eb,#7c3aed);
 }
 
@@ -322,6 +336,10 @@ footer{
     .tool-box{
         padding:16px;
     }
+
+    .container{
+        padding-top:35px;
+    }
 }
 </style>
 </head>
@@ -329,193 +347,203 @@ footer{
 <body>
 
 <header>
-    <div class="nav">
-        <a href="index.html" class="logo">
-            Novix <span>Tool</span>
-        </a>
 
-        <a href="index.html" class="back">
-            ← Back to Tools
-        </a>
-    </div>
+<div class="nav">
+
+<a href="index.html" class="logo">
+Novix <span>Tool</span>
+</a>
+
+<a href="index.html" class="back">
+← Back to Tools
+</a>
+
+</div>
+
 </header>
+
 
 <main class="container">
 
 <section class="hero">
 
-    <div class="badge">
-        ✨ AI POWERED • FREE
-    </div>
+<div class="badge">
+✨ AI POWERED • PRIVATE • FREE
+</div>
 
-    <h1>
-        AI Background Remover
-    </h1>
+<h1>
+AI Background Remover
+</h1>
 
-    <p>
-        Remove image backgrounds automatically with AI.
-        Your image is processed directly in your browser.
-    </p>
+<p>
+Remove image backgrounds automatically with AI.
+Your image is processed directly in your browser.
+</p>
 
 </section>
 
 
 <section class="tool-box">
 
-    <label class="upload" for="fileInput">
 
-        <div class="upload-icon">
-            🖼️
-        </div>
+<label class="upload" for="fileInput">
 
-        <h2>
-            Select an Image
-        </h2>
+<div class="upload-icon">
+🖼️
+</div>
 
-        <p>
-            JPG, PNG or WEBP • Tap here to upload
-        </p>
+<h2>
+Select an Image
+</h2>
 
-        <input
-            type="file"
-            id="fileInput"
-            accept="image/jpeg,image/png,image/webp"
-        >
+<p>
+JPG, PNG or WEBP • Tap here to upload
+</p>
 
-    </label>
+<input
+type="file"
+id="fileInput"
+accept="image/jpeg,image/png,image/webp"
+>
 
-
-    <div class="status" id="status">
-        ⏳ AI is loading...
-    </div>
+</label>
 
 
-    <div class="progress-wrap" id="progressWrap">
-
-        <div class="progress">
-
-            <div
-                class="progress-bar"
-                id="progressBar">
-            </div>
-
-        </div>
-
-        <div
-            class="progress-text"
-            id="progressText">
-            Preparing...
-        </div>
-
-    </div>
+<div class="status" id="status">
+⏳ AI engine loading...
+</div>
 
 
-    <div class="preview-grid">
+<div class="progress-wrap" id="progressWrap">
 
-        <div class="preview-card">
+<div class="progress">
 
-            <h3>
-                Original Image
-            </h3>
+<div
+class="progress-bar"
+id="progressBar">
+</div>
 
-            <div
-                class="preview"
-                id="originalPreview">
+</div>
 
-                <div class="placeholder">
-                    Your image will appear here
-                </div>
+<div
+class="progress-text"
+id="progressText">
+Preparing AI...
+</div>
 
-            </div>
-
-        </div>
-
-
-        <div class="preview-card">
-
-            <h3>
-                Background Removed
-            </h3>
-
-            <div
-                class="preview"
-                id="resultPreview">
-
-                <div class="placeholder">
-                    Result will appear here
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
+</div>
 
 
-    <div class="buttons">
-
-        <button
-            class="download"
-            id="downloadBtn"
-            disabled>
-
-            ⬇ Download PNG
-
-        </button>
+<div class="preview-grid">
 
 
-        <button
-            class="reset"
-            id="resetBtn">
+<div class="preview-card">
 
-            ↻ Reset
+<h3>
+Original Image
+</h3>
 
-        </button>
+<div
+class="preview"
+id="originalPreview">
 
-    </div>
+<div class="placeholder">
+Your image will appear here
+</div>
+
+</div>
+
+</div>
+
+
+<div class="preview-card">
+
+<h3>
+Background Removed
+</h3>
+
+<div
+class="preview"
+id="resultPreview">
+
+<div class="placeholder">
+Result will appear here
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="buttons">
+
+<button
+class="download"
+id="downloadBtn"
+disabled>
+
+⬇ Download PNG
+
+</button>
+
+
+<button
+class="reset"
+id="resetBtn">
+
+↻ Reset
+
+</button>
+
+</div>
 
 </section>
 
 
 <section class="info">
 
-    <div class="info-card">
 
-        <strong>
-            🤖 AI Powered
-        </strong>
+<div class="info-card">
 
-        <span>
-            Automatically detects the main subject.
-        </span>
+<strong>
+🤖 AI Powered
+</strong>
 
-    </div>
+<span>
+Automatically detects and removes the background.
+</span>
 
-
-    <div class="info-card">
-
-        <strong>
-            🔒 Private
-        </strong>
-
-        <span>
-            Your image is processed in your browser.
-        </span>
-
-    </div>
+</div>
 
 
-    <div class="info-card">
+<div class="info-card">
 
-        <strong>
-            ⚡ Easy
-        </strong>
+<strong>
+🔒 Private
+</strong>
 
-        <span>
-            Upload → Remove → Download.
-        </span>
+<span>
+Your image is processed directly in your browser.
+</span>
 
-    </div>
+</div>
+
+
+<div class="info-card">
+
+<strong>
+⚡ Free
+</strong>
+
+<span>
+No upload limit or account required.
+</span>
+
+</div>
+
 
 </section>
 
@@ -524,273 +552,439 @@ footer{
 
 <footer>
 
-    © 2026 Novix Tool • Simple • Fast • Free
+© 2026 Novix Tool • Simple • Fast • Free
 
 </footer>
 
 
-<script src="https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.7.0/dist/browser.js"></script>
+<script type="module">
 
-<script>
+/* =========================================
+   IMPORT IMG.LY BACKGROUND REMOVAL
+========================================= */
+
+import removeBackground
+from "https://esm.sh/@imgly/background-removal@1.7.0";
+
+
+/* =========================================
+   ELEMENTS
+========================================= */
 
 const fileInput =
-    document.getElementById("fileInput");
+document.getElementById("fileInput");
 
 const status =
-    document.getElementById("status");
+document.getElementById("status");
 
 const originalPreview =
-    document.getElementById("originalPreview");
+document.getElementById("originalPreview");
 
 const resultPreview =
-    document.getElementById("resultPreview");
+document.getElementById("resultPreview");
 
 const downloadBtn =
-    document.getElementById("downloadBtn");
+document.getElementById("downloadBtn");
 
 const resetBtn =
-    document.getElementById("resetBtn");
+document.getElementById("resetBtn");
 
 const progressWrap =
-    document.getElementById("progressWrap");
+document.getElementById("progressWrap");
 
 const progressBar =
-    document.getElementById("progressBar");
+document.getElementById("progressBar");
 
 const progressText =
-    document.getElementById("progressText");
+document.getElementById("progressText");
+
 
 let resultBlob = null;
 let resultURL = null;
+let originalURL = null;
+
+
+/* =========================================
+   READY
+========================================= */
+
+status.textContent =
+"✅ AI ready! Select an image.";
+
+
+/* =========================================
+   FILE SELECT
+========================================= */
+
+fileInput.addEventListener(
+"change",
+async function(){
+
+const file =
+this.files && this.files[0];
+
+if(!file){
+return;
+}
+
+
+/* Check image */
+
+if(!file.type.startsWith("image/")){
+
+status.textContent =
+"❌ Please select a JPG, PNG or WEBP image.";
+
+return;
+}
+
+
+/* =========================================
+   ORIGINAL PREVIEW
+========================================= */
+
+if(originalURL){
+
+URL.revokeObjectURL(
+originalURL
+);
+
+}
+
+originalURL =
+URL.createObjectURL(file);
+
+originalPreview.innerHTML = "";
+
+const originalImage =
+document.createElement("img");
+
+originalImage.src =
+originalURL;
+
+originalImage.alt =
+"Original Image";
+
+originalPreview.appendChild(
+originalImage
+);
+
+
+/* =========================================
+   RESET RESULT
+========================================= */
+
+resultPreview.innerHTML =
+`
+<div class="placeholder">
+Processing...
+</div>
+`;
+
+downloadBtn.disabled =
+true;
+
+resultBlob = null;
+
+if(resultURL){
+
+URL.revokeObjectURL(
+resultURL
+);
+
+resultURL = null;
+}
+
+
+/* =========================================
+   START
+========================================= */
+
+progressWrap.style.display =
+"block";
+
+progressBar.style.width =
+"5%";
+
+progressText.textContent =
+"Starting AI...";
+
+status.textContent =
+"🤖 AI is processing your image...";
+
+
+try{
+
+
+/* =========================================
+   REMOVE BACKGROUND
+========================================= */
+
+const blob =
+await removeBackground(
+file,
+{
+
+model:"isnet",
+
+output:{
+format:"image/png",
+quality:1
+},
+
+progress:
+(key,current,total)=>{
+
+if(total > 0){
+
+const percent =
+Math.min(
+95,
+Math.round(
+(current / total) * 100
+)
+);
+
+progressBar.style.width =
+percent + "%";
+
+
+let text =
+"AI processing...";
+
+
+if(key.includes("fetch")){
+text =
+"⬇ Downloading AI model...";
+}
+
+else if(key.includes("decode")){
+text =
+"🖼️ Reading image...";
+}
+
+else if(key.includes("inference")){
+text =
+"🧠 Removing background...";
+}
+
+else if(key.includes("mask")){
+text =
+"✨ Refining edges...";
+}
+
+else if(key.includes("encode")){
+text =
+"📦 Creating PNG...";
+}
+
+progressText.textContent =
+text + " " + percent + "%";
+
+}
+
+}
+
+}
+);
+
+
+/* =========================================
+   RESULT
+========================================= */
+
+resultBlob =
+blob;
+
+
+resultURL =
+URL.createObjectURL(
+blob
+);
+
+
+resultPreview.innerHTML =
+"";
+
+
+const resultImage =
+document.createElement("img");
+
+resultImage.src =
+resultURL;
+
+resultImage.alt =
+"Background Removed Image";
+
+resultPreview.appendChild(
+resultImage
+);
+
+
+/* =========================================
+   COMPLETE
+========================================= */
+
+progressBar.style.width =
+"100%";
+
+progressText.textContent =
+"✅ Complete!";
+
+status.textContent =
+"🎉 Background removed successfully!";
+
+downloadBtn.disabled =
+false;
+
+
+setTimeout(
+function(){
+
+progressWrap.style.display =
+"none";
+
+},
+1500
+);
+
+
+}catch(error){
+
+console.error(
+"Background removal error:",
+error
+);
+
+progressWrap.style.display =
+"none";
+
+
+resultPreview.innerHTML =
+`
+<div class="placeholder">
+❌ Processing failed
+</div>
+`;
 
 
 status.textContent =
-    "✅ AI ready! Select an image.";
+"❌ Error: " +
+(error?.message ||
+"Background removal failed.");
 
+}
 
-fileInput.addEventListener(
-    "change",
-    async function(){
-
-        const file = this.files[0];
-
-        if(!file){
-            return;
-        }
-
-
-        if(!file.type.startsWith("image/")){
-
-            status.textContent =
-                "❌ Please select an image.";
-
-            return;
-        }
-
-
-        /* Original preview */
-
-        const originalURL =
-            URL.createObjectURL(file);
-
-        originalPreview.innerHTML =
-            `<img src="${originalURL}" alt="Original Image">`;
-
-
-        /* Reset result */
-
-        resultPreview.innerHTML =
-            `<div class="placeholder">
-                Processing...
-            </div>`;
-
-        downloadBtn.disabled = true;
-
-
-        progressWrap.style.display =
-            "block";
-
-        progressBar.style.width =
-            "5%";
-
-        progressText.textContent =
-            "Starting AI...";
-
-
-        status.textContent =
-            "🤖 AI is processing your image...";
-
-
-        try{
-
-            const blob =
-                await imglyRemoveBackground(
-                    file,
-                    {
-                        model:"isnet",
-                        output:{
-                            format:"image/png",
-                            quality:1
-                        },
-
-                        progress:
-                            (key,current,total) => {
-
-                                if(total){
-
-                                    const percent =
-                                        Math.min(
-                                            95,
-                                            Math.round(
-                                                (current / total) * 100
-                                            )
-                                        );
-
-                                    progressBar.style.width =
-                                        percent + "%";
-
-                                    progressText.textContent =
-                                        "AI processing: " +
-                                        percent +
-                                        "%";
-                                }
-                            }
-                    }
-                );
-
-
-            resultBlob = blob;
-
-
-            if(resultURL){
-                URL.revokeObjectURL(resultURL);
-            }
-
-
-            resultURL =
-                URL.createObjectURL(blob);
-
-
-            resultPreview.innerHTML =
-                `<img
-                    src="${resultURL}"
-                    alt="Background Removed"
-                >`;
-
-
-            progressBar.style.width =
-                "100%";
-
-            progressText.textContent =
-                "✅ Complete!";
-
-
-            status.textContent =
-                "🎉 Background removed successfully!";
-
-
-            downloadBtn.disabled =
-                false;
-
-
-            setTimeout(
-                () => {
-                    progressWrap.style.display =
-                        "none";
-                },
-                1500
-            );
-
-
-        }catch(error){
-
-            console.error(error);
-
-            progressWrap.style.display =
-                "none";
-
-            resultPreview.innerHTML =
-                `<div class="placeholder">
-                    ❌ Processing failed
-                </div>`;
-
-            status.textContent =
-                "❌ Error: " +
-                (error.message || "Unable to process image.");
-        }
-
-    }
+}
 );
 
 
-/* Download */
+/* =========================================
+   DOWNLOAD
+========================================= */
 
 downloadBtn.addEventListener(
-    "click",
-    function(){
+"click",
+function(){
 
-        if(!resultBlob || !resultURL){
-            return;
-        }
+if(!resultBlob ||
+!resultURL){
 
-        const link =
-            document.createElement("a");
+return;
+}
 
-        link.href =
-            resultURL;
 
-        link.download =
-            "Novix-Tool-Background-Removed.png";
+const link =
+document.createElement("a");
 
-        document.body.appendChild(link);
+link.href =
+resultURL;
 
-        link.click();
+link.download =
+"Novix-Tool-Background-Removed.png";
 
-        link.remove();
-    }
+
+document.body.appendChild(
+link
+);
+
+link.click();
+
+link.remove();
+
+}
 );
 
 
-/* Reset */
+/* =========================================
+   RESET
+========================================= */
 
 resetBtn.addEventListener(
-    "click",
-    function(){
+"click",
+function(){
 
-        fileInput.value = "";
+fileInput.value =
+"";
 
-        if(resultURL){
 
-            URL.revokeObjectURL(
-                resultURL
-            );
+if(originalURL){
 
-            resultURL = null;
-        }
+URL.revokeObjectURL(
+originalURL
+);
 
-        resultBlob = null;
+originalURL =
+null;
+}
 
-        originalPreview.innerHTML =
-            `<div class="placeholder">
-                Your image will appear here
-            </div>`;
 
-        resultPreview.innerHTML =
-            `<div class="placeholder">
-                Result will appear here
-            </div>`;
+if(resultURL){
 
-        downloadBtn.disabled = true;
+URL.revokeObjectURL(
+resultURL
+);
 
-        progressWrap.style.display =
-            "none";
+resultURL =
+null;
+}
 
-        status.textContent =
-            "✅ AI ready! Select an image.";
-    }
+
+resultBlob =
+null;
+
+
+originalPreview.innerHTML =
+`
+<div class="placeholder">
+Your image will appear here
+</div>
+`;
+
+
+resultPreview.innerHTML =
+`
+<div class="placeholder">
+Result will appear here
+</div>
+`;
+
+
+downloadBtn.disabled =
+true;
+
+
+progressWrap.style.display =
+"none";
+
+
+status.textContent =
+"✅ AI ready! Select an image.";
+
+}
 );
 
 </script>
 
 </body>
-            </html>
+    </html>
