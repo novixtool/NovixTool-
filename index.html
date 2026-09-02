@@ -14,92 +14,193 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
             background: #f5f7fb;
-            color: #1f2937;
+            color: #172033;
         }
 
         header {
-            background: #111827;
+            background: linear-gradient(135deg, #111827, #1e3a8a);
             color: white;
-            padding: 18px 20px;
+            padding: 22px 20px;
             text-align: center;
         }
 
         header h1 {
-            font-size: 30px;
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
         }
 
         header p {
-            margin-top: 6px;
-            color: #cbd5e1;
+            margin-top: 7px;
+            color: #dbeafe;
+            font-size: 15px;
         }
 
         .hero {
             text-align: center;
-            padding: 55px 20px;
+            padding: 70px 20px 60px;
             background: white;
         }
 
+        .hero-badge {
+            display: inline-block;
+            background: #eff6ff;
+            color: #2563eb;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
         .hero h2 {
-            font-size: 36px;
-            margin-bottom: 12px;
+            font-size: 42px;
+            line-height: 1.15;
+            margin-bottom: 15px;
+            color: #111827;
         }
 
         .hero p {
             font-size: 18px;
             color: #64748b;
+            max-width: 650px;
+            margin: auto;
+            line-height: 1.6;
         }
 
         .tools {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 0 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 55px 20px 20px;
         }
 
-        .tools h2 {
+        .section-title {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 32px;
+        }
+
+        .section-title h2 {
+            font-size: 28px;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+            color: #64748b;
+            font-size: 15px;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 22px;
         }
 
         .tool-card {
             background: white;
-            padding: 25px;
-            border-radius: 15px;
+            padding: 28px 22px;
+            border-radius: 18px;
             text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 8px 25px rgba(15, 23, 42, 0.07);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.12);
+        }
+
+        .tool-icon {
+            width: 58px;
+            height: 58px;
+            margin: 0 auto 17px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #eff6ff;
+            border-radius: 15px;
+            font-size: 28px;
         }
 
         .tool-card h3 {
+            font-size: 20px;
             margin-bottom: 10px;
+            color: #111827;
         }
 
         .tool-card p {
             color: #64748b;
-            margin-bottom: 18px;
+            margin-bottom: 22px;
+            line-height: 1.5;
+            min-height: 45px;
         }
 
-        .tool-card button {
+        .use-tool {
+            display: inline-block;
             background: #2563eb;
             color: white;
-            border: none;
-            padding: 11px 20px;
-            border-radius: 8px;
-            cursor: pointer;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 9px;
+            font-size: 15px;
+            font-weight: 700;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .use-tool:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
         }
 
         footer {
-            margin-top: 50px;
+            margin-top: 60px;
             background: #111827;
             color: #cbd5e1;
             text-align: center;
-            padding: 25px;
+            padding: 30px 20px;
+        }
+
+        footer h3 {
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        footer p {
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+
+            header h1 {
+                font-size: 27px;
+            }
+
+            .hero {
+                padding: 55px 18px 50px;
+            }
+
+            .hero h2 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .tools {
+                padding: 45px 16px 10px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tool-card {
+                padding: 25px 20px;
+            }
         }
     </style>
 </head>
@@ -111,50 +212,167 @@
         <p>Free Online Tools for Everyone</p>
     </header>
 
+
     <section class="hero">
-        <h2>Powerful Tools. Absolutely Free.</h2>
-        <p>Simple, fast and free online tools for your everyday needs.</p>
+
+        <div class="hero-badge">
+            ✨ Simple • Fast • Free
+        </div>
+
+        <h2>Powerful Tools.<br>Absolutely Free.</h2>
+
+        <p>
+            Simple, fast and free online tools for your everyday needs.
+            No complicated software required.
+        </p>
+
     </section>
 
+
     <section class="tools">
-        <h2>🚀 Popular Tools</h2>
+
+        <div class="section-title">
+            <h2>🚀 Popular Tools</h2>
+            <p>Choose a tool and get started instantly.</p>
+        </div>
+
 
         <div class="grid">
 
-            <div class="tool-card">
-                <h3>🖼️ Image to PNG</h3>
-                <p>Convert your images to PNG format easily.</p>
-                <button> <a href="image-to-png.html">Use Tool</a> </button>
-            </div>
+
+            <!-- Image to PNG -->
 
             <div class="tool-card">
-                <h3>📦 Image Compressor</h3>
-                <p>Compress images without complicated software.</p>
-                <button> <a href="image-compressor.html">Use Tool</a> </button>
+
+                <div class="tool-icon">
+                    🖼️
+                </div>
+
+                <h3>Image to PNG</h3>
+
+                <p>
+                    Convert your images to PNG format easily.
+                </p>
+
+                <a
+                    href="image-to-png.html"
+                    class="use-tool"
+                >
+                    Use Tool
+                </a>
+
             </div>
 
-            <div class="tool-card">
-                <h3>🔳 QR Code Generator</h3>
-                <p>Create QR codes quickly and easily.</p>
-                <button> <a href="qr-code-generator.html">Use Tool</a> </button>
-            </div>
+
+            <!-- Image Compressor -->
 
             <div class="tool-card">
-                <h3>🔢 Word Counter</h3>
-                <p>Count words and characters instantly.</p>
-                <button> <a href="word-counter.html">Use Tool</a> </button>
+
+                <div class="tool-icon">
+                    📦
+                </div>
+
+                <h3>Image Compressor</h3>
+
+                <p>
+                    Compress images quickly and reduce file size.
+                </p>
+
+                <a
+                    href="image-compressor.html"
+                    class="use-tool"
+                >
+                    Use Tool
+                </a>
+
             </div>
+
+
+            <!-- QR Code Generator -->
+
             <div class="tool-card">
-    <h2>📄 JPG to PDF Converter</h2>
-    <p>Convert JPG, PNG and WEBP images into PDF.</p>
-    <a href="jpg-to-pdf.html" style="display:inline-block;background:#2864e8;color:white;padding:13px 30px;border-radius:10px;text-decoration:none;">Use Tool</a>
+
+                <div class="tool-icon">
+                    🔳
+                </div>
+
+                <h3>QR Code Generator</h3>
+
+                <p>
+                    Create QR codes quickly and easily.
+                </p>
+
+                <a
+                    href="qr-code-generator.html"
+                    class="use-tool"
+                >
+                    Use Tool
+                </a>
+
             </div>
+
+
+            <!-- Word Counter -->
+
+            <div class="tool-card">
+
+                <div class="tool-icon">
+                    🔢
+                </div>
+
+                <h3>Word Counter</h3>
+
+                <p>
+                    Count words, characters and sentences instantly.
+                </p>
+
+                <a
+                    href="word-counter.html"
+                    class="use-tool"
+                >
+                    Use Tool
+                </a>
+
+            </div>
+
+
+            <!-- JPG to PDF -->
+
+            <div class="tool-card">
+
+                <div class="tool-icon">
+                    📄
+                </div>
+
+                <h3>JPG to PDF</h3>
+
+                <p>
+                    Convert JPG, PNG and WEBP images into PDF.
+                </p>
+
+                <a
+                    href="jpg-to-pdf.html"
+                    class="use-tool"
+                >
+                    Use Tool
+                </a>
+
+            </div>
+
 
         </div>
+
     </section>
 
+
     <footer>
-        <p>© 2026 Novix Tool. All Rights Reserved.</p>
+
+        <h3>⚡ Novix Tool</h3>
+
+        <p>
+            © 2026 Novix Tool. All Rights Reserved.
+        </p>
+
     </footer>
 
 </body>
