@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Background Remover - Novix Tool</title>
-    <meta name="description" content="Remove image backgrounds online for free with Novix Tool.">
+    <meta name="description" content="Remove image backgrounds online with Novix Tool.">
 
     <style>
         * {
@@ -84,9 +84,9 @@
         }
 
         .container {
-            max-width: 850px;
+            max-width: 900px;
             margin: auto;
-            padding: 70px 20px 90px;
+            padding: 65px 20px 90px;
             text-align: center;
         }
 
@@ -103,9 +103,9 @@
         }
 
         h1 {
-            font-size: clamp(38px, 7vw, 58px);
-            margin-bottom: 15px;
+            font-size: clamp(40px, 7vw, 60px);
             letter-spacing: -2px;
+            margin-bottom: 15px;
         }
 
         .gradient {
@@ -122,7 +122,7 @@
         }
 
         .tool-box {
-            padding: 35px 25px;
+            padding: 30px;
             border-radius: 20px;
             border: 1px solid rgba(255,255,255,0.09);
             background: rgba(255,255,255,0.045);
@@ -130,20 +130,22 @@
         }
 
         .upload-area {
-            border: 2px dashed rgba(79,140,255,0.35);
-            border-radius: 16px;
-            padding: 45px 20px;
+            display: block;
+            border: 2px dashed rgba(79,140,255,0.4);
+            border-radius: 17px;
+            padding: 48px 20px;
             cursor: pointer;
             transition: 0.25s;
         }
 
         .upload-area:hover {
             border-color: #4f8cff;
-            background: rgba(37,99,235,0.06);
+            background: rgba(37,99,235,0.07);
+            transform: translateY(-2px);
         }
 
         .upload-icon {
-            font-size: 48px;
+            font-size: 50px;
             margin-bottom: 15px;
         }
 
@@ -157,32 +159,36 @@
             font-size: 14px;
         }
 
-        input[type="file"] {
+        #imageInput {
             display: none;
         }
 
         .status {
-            margin-top: 25px;
+            margin-top: 22px;
             color: #9ca8bd;
             font-size: 14px;
-            min-height: 22px;
+            line-height: 1.5;
         }
 
-        .loader {
-            width: 35px;
-            height: 35px;
-            border: 4px solid rgba(255,255,255,0.12);
-            border-top-color: #4f8cff;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 18px auto;
+        .progress-box {
             display: none;
+            margin: 20px auto 0;
+            max-width: 500px;
         }
 
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
+        .progress-bar {
+            height: 8px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.08);
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            border-radius: 20px;
+            background: linear-gradient(90deg, #2563eb, #a855f7);
+            transition: width 0.2s ease;
         }
 
         .result {
@@ -190,14 +196,15 @@
             margin-top: 30px;
         }
 
-        .result h3 {
-            margin-bottom: 15px;
+        .result-title {
+            font-size: 20px;
+            margin-bottom: 18px;
         }
 
         .preview {
-            min-height: 250px;
             padding: 20px;
-            border-radius: 15px;
+            min-height: 280px;
+            border-radius: 16px;
             border: 1px solid rgba(255,255,255,0.08);
 
             background-image:
@@ -207,13 +214,17 @@
                 linear-gradient(-45deg, transparent 75%, #202633 75%);
 
             background-size: 30px 30px;
-            background-position: 0 0, 0 15px, 15px -15px, -15px 0;
+            background-position:
+                0 0,
+                0 15px,
+                15px -15px,
+                -15px 0;
         }
 
         .preview img {
-            max-width: 100%;
-            max-height: 450px;
             display: block;
+            max-width: 100%;
+            max-height: 500px;
             margin: auto;
             border-radius: 8px;
         }
@@ -227,13 +238,22 @@
             color: white;
             text-decoration: none;
             font-weight: 700;
-            border: none;
-            cursor: pointer;
             box-shadow: 0 8px 25px rgba(37,99,235,0.25);
         }
 
         .download-btn:hover {
             transform: translateY(-2px);
+        }
+
+        .reset-btn {
+            margin-left: 10px;
+            padding: 12px 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.06);
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
         }
 
         .note {
@@ -260,15 +280,20 @@
             }
 
             .container {
-                padding: 55px 15px 70px;
+                padding: 50px 15px 70px;
             }
 
             .tool-box {
-                padding: 25px 15px;
+                padding: 20px 15px;
             }
 
             .upload-area {
                 padding: 40px 15px;
+            }
+
+            .reset-btn {
+                display: block;
+                margin: 12px auto 0;
             }
         }
     </style>
@@ -278,6 +303,7 @@
 
 <header>
     <div class="navbar">
+
         <a href="index.html" class="logo">
             Novix <span>Tool</span>
         </a>
@@ -285,13 +311,15 @@
         <a href="index.html" class="home-btn">
             ← Home
         </a>
+
     </div>
 </header>
+
 
 <main class="container">
 
     <div class="tag">
-        ✨ FREE IMAGE TOOL
+        ✨ FREE AI IMAGE TOOL
     </div>
 
     <h1>
@@ -299,9 +327,9 @@
     </h1>
 
     <p class="subtitle">
-        Remove image backgrounds quickly and easily.
-        Download your image with a transparent background.
+        Remove image backgrounds with AI and download a transparent PNG.
     </p>
+
 
     <div class="tool-box">
 
@@ -316,30 +344,51 @@
             </h2>
 
             <p>
-                Click here to choose JPG, PNG or WEBP
+                JPG, PNG or WEBP • Tap to choose an image
             </p>
 
         </label>
 
+
         <input
             type="file"
             id="imageInput"
-            accept="image/png,image/jpeg,image/webp"
+            accept="image/jpeg,image/png,image/webp"
         >
 
-        <div class="status" id="status"></div>
 
-        <div class="loader" id="loader"></div>
+        <div class="status" id="status">
+            Ready — choose an image to begin.
+        </div>
+
+
+        <div class="progress-box" id="progressBox">
+
+            <div class="progress-bar">
+                <div
+                    class="progress-fill"
+                    id="progressFill"
+                ></div>
+            </div>
+
+        </div>
+
 
         <div class="result" id="result">
 
-            <h3>
+            <div class="result-title">
                 ✨ Background Removed
-            </h3>
+            </div>
 
             <div class="preview">
-                <img id="resultImage" alt="Background removed image">
+
+                <img
+                    id="resultImage"
+                    alt="Background removed image"
+                >
+
             </div>
+
 
             <a
                 id="downloadBtn"
@@ -349,22 +398,31 @@
                 ⬇ Download PNG
             </a>
 
+
+            <button
+                id="resetBtn"
+                class="reset-btn"
+            >
+                Choose Another
+            </button>
+
         </div>
 
+
         <div class="note">
-            Your image is processed in your browser. No upload form is required.
+            Processing happens in your browser. The AI model may take a little
+            time to load the first time.
         </div>
 
     </div>
 
 </main>
 
+
 <footer>
     © 2026 <strong>Novix Tool</strong>. All Rights Reserved.
 </footer>
 
-
-<!-- Background Removal Library -->
 
 <script type="module">
 
@@ -372,71 +430,191 @@
     "https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.7.0/+esm";
 
 
-    const imageInput = document.getElementById("imageInput");
-    const status = document.getElementById("status");
-    const loader = document.getElementById("loader");
-    const result = document.getElementById("result");
-    const resultImage = document.getElementById("resultImage");
-    const downloadBtn = document.getElementById("downloadBtn");
+    const imageInput =
+        document.getElementById("imageInput");
+
+    const status =
+        document.getElementById("status");
+
+    const progressBox =
+        document.getElementById("progressBox");
+
+    const progressFill =
+        document.getElementById("progressFill");
+
+    const result =
+        document.getElementById("result");
+
+    const resultImage =
+        document.getElementById("resultImage");
+
+    const downloadBtn =
+        document.getElementById("downloadBtn");
+
+    const resetBtn =
+        document.getElementById("resetBtn");
 
 
-    imageInput.addEventListener("change", async function () {
+    let currentUrl = null;
 
-        const file = this.files[0];
 
-        if (!file) {
-            return;
+    imageInput.addEventListener(
+        "change",
+        async function () {
+
+            const file = this.files[0];
+
+            if (!file) {
+                return;
+            }
+
+
+            if (currentUrl) {
+                URL.revokeObjectURL(currentUrl);
+                currentUrl = null;
+            }
+
+
+            result.style.display = "none";
+
+            progressBox.style.display = "block";
+
+            progressFill.style.width = "5%";
+
+
+            status.textContent =
+                "Loading AI background remover...";
+
+
+            try {
+
+                const blob = await removeBackground(
+                    file,
+                    {
+                        model: "isnet",
+
+                        output: {
+                            format: "image/png",
+                            quality: 1
+                        },
+
+                        progress: (
+                            key,
+                            current,
+                            total
+                        ) => {
+
+                            if (total > 0) {
+
+                                const percent =
+                                    Math.min(
+                                        95,
+                                        Math.round(
+                                            (current / total) * 100
+                                        )
+                                    );
+
+                                progressFill.style.width =
+                                    percent + "%";
+
+                            }
+
+
+                            if (
+                                key.includes("fetch") ||
+                                key.includes("download")
+                            ) {
+
+                                status.textContent =
+                                    "Downloading AI model...";
+
+                            } else {
+
+                                status.textContent =
+                                    "Removing background...";
+
+                            }
+
+                        }
+                    }
+                );
+
+
+                currentUrl =
+                    URL.createObjectURL(blob);
+
+
+                resultImage.src =
+                    currentUrl;
+
+
+                downloadBtn.href =
+                    currentUrl;
+
+
+                progressFill.style.width =
+                    "100%";
+
+
+                status.textContent =
+                    "Background removed successfully!";
+
+
+                result.style.display =
+                    "block";
+
+
+            } catch (error) {
+
+                console.error(
+                    "Background removal error:",
+                    error
+                );
+
+
+                progressBox.style.display =
+                    "none";
+
+
+                status.textContent =
+                    "Could not process this image. Please try another photo.";
+
+
+            }
+
         }
+    );
 
 
-        result.style.display = "none";
+    resetBtn.addEventListener(
+        "click",
+        function () {
 
-        loader.style.display = "block";
+            imageInput.value = "";
 
-        status.textContent =
-            "Preparing image... Please wait.";
+            result.style.display = "none";
 
+            progressBox.style.display = "none";
 
-        try {
-
-            status.textContent =
-                "Removing background...";
-
-
-            const blob = await removeBackground(file);
-
-
-            const url = URL.createObjectURL(blob);
-
-
-            resultImage.src = url;
-
-            downloadBtn.href = url;
-
-
-            loader.style.display = "none";
+            progressFill.style.width = "0%";
 
             status.textContent =
-                "Background removed successfully!";
+                "Ready — choose an image to begin.";
 
+            if (currentUrl) {
 
-            result.style.display = "block";
+                URL.revokeObjectURL(
+                    currentUrl
+                );
 
+                currentUrl = null;
 
-        } catch (error) {
-
-            console.error(error);
-
-            loader.style.display = "none";
-
-            status.textContent =
-                "Something went wrong. Please try another image.";
+            }
 
         }
-
-    });
+    );
 
 </script>
 
 </body>
-  </html>
+</html>
