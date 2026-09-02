@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://novixtool.github.io/NovixTool-/sitemap.xml
