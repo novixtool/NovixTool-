@@ -2,13 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Novix Tool - Free Online Tools</title>
+    <meta name="description"
+        content="Novix Tool - Simple, fast and free online tools for images, PDFs, QR codes and text.">
 
-    <meta name="description" content="Novix Tool provides simple, fast and free online tools for image conversion, compression, QR codes, word counting, PDF conversion and background removal.">
+    <meta name="keywords"
+        content="online tools, background remover, jpg to pdf, image to png, image compressor, qr code generator, word counter">
+
+    <meta name="author" content="Novix Tool">
+
+    <title>Novix Tool - Powerful Tools. Made Simple.</title>
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
@@ -27,16 +35,20 @@
             overflow-x: hidden;
         }
 
+        /* Background Glow */
+
         body::before {
             content: "";
             position: fixed;
             width: 500px;
             height: 500px;
             background: #2563eb;
-            filter: blur(180px);
-            opacity: 0.18;
-            top: -200px;
+            opacity: 0.10;
+            filter: blur(120px);
+            border-radius: 50%;
+            top: -180px;
             left: -150px;
+            pointer-events: none;
             z-index: -1;
         }
 
@@ -45,41 +57,49 @@
             position: fixed;
             width: 500px;
             height: 500px;
-            background: #9333ea;
-            filter: blur(180px);
-            opacity: 0.15;
-            right: -200px;
-            bottom: -200px;
+            background: #7c3aed;
+            opacity: 0.10;
+            filter: blur(120px);
+            border-radius: 50%;
+            bottom: -180px;
+            right: -150px;
+            pointer-events: none;
             z-index: -1;
         }
 
-        /* HEADER */
+        /* Header */
+
         header {
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
+
+            width: 100%;
+
+            padding: 18px 7%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
             background: rgba(7, 11, 23, 0.75);
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .navbar {
-            max-width: 1150px;
-            margin: auto;
-            padding: 18px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
         .logo {
-            font-size: 24px;
+            font-size: 25px;
             font-weight: 800;
-            letter-spacing: -0.5px;
-        }
+            letter-spacing: 0.5px;
 
-        .logo span {
-            background: linear-gradient(90deg, #3b82f6, #a855f7);
+            background: linear-gradient(
+                90deg,
+                #60a5fa,
+                #a78bfa
+            );
+
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -95,175 +115,298 @@
             color: #ffffff;
         }
 
-        /* HERO */
+        /* Hero */
+
         .hero {
+            text-align: center;
+
+            padding: 85px 20px 65px;
+
             max-width: 900px;
             margin: auto;
-            text-align: center;
-            padding: 95px 20px 70px;
         }
 
         .tag {
             display: inline-block;
-            padding: 8px 15px;
-            border-radius: 30px;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.25);
+
+            padding: 8px 16px;
+
+            border-radius: 50px;
+
+            background: rgba(59, 130, 246, 0.10);
+
+            border: 1px solid rgba(96, 165, 250, 0.25);
+
             color: #93c5fd;
+
             font-size: 13px;
+            font-weight: 600;
+
             margin-bottom: 22px;
         }
 
         .hero h1 {
-            font-size: clamp(42px, 7vw, 76px);
-            line-height: 1.05;
-            letter-spacing: -3px;
-            margin-bottom: 22px;
-        }
+            font-size: clamp(42px, 7vw, 72px);
 
-        .hero h1 span {
-            background: linear-gradient(90deg, #60a5fa, #c084fc);
+            line-height: 1.05;
+
+            font-weight: 800;
+
+            letter-spacing: -2px;
+
+            margin-bottom: 22px;
+
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                #93c5fd,
+                #c4b5fd
+            );
+
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .hero p {
             max-width: 650px;
+
             margin: auto;
+
             color: #94a3b8;
-            font-size: 18px;
+
+            font-size: 17px;
+
             line-height: 1.7;
         }
 
-        .hero-button {
+        .explore-btn {
             display: inline-block;
+
             margin-top: 32px;
+
             padding: 14px 25px;
+
             border-radius: 12px;
+
             color: #ffffff;
+
             text-decoration: none;
+
             font-weight: 700;
-            background: linear-gradient(135deg, #2563eb, #9333ea);
-            box-shadow: 0 10px 35px rgba(37, 99, 235, 0.25);
+
+            background: linear-gradient(
+                135deg,
+                #2563eb,
+                #7c3aed
+            );
+
+            box-shadow:
+                0 10px 30px rgba(37, 99, 235, 0.20);
+
             transition: 0.3s;
         }
 
-        .hero-button:hover {
+        .explore-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(147, 51, 234, 0.3);
+
+            box-shadow:
+                0 15px 40px rgba(124, 58, 237, 0.30);
         }
 
-        /* TOOLS */
+        /* Tools Section */
+
         .tools-section {
-            max-width: 1150px;
+            max-width: 1200px;
+
             margin: auto;
-            padding: 20px 20px 90px;
+
+            padding: 20px 25px 90px;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 35px;
+
+            font-size: 30px;
+
+            margin-bottom: 12px;
         }
 
-        .section-title h2 {
-            font-size: 34px;
-            margin-bottom: 10px;
-        }
+        .section-subtitle {
+            text-align: center;
 
-        .section-title p {
-            color: #94a3b8;
+            color: #64748b;
+
+            margin-bottom: 45px;
+
+            font-size: 15px;
         }
 
         .tools-grid {
             display: grid;
+
             grid-template-columns: repeat(3, 1fr);
+
             gap: 22px;
         }
 
-        /* TOOL CARD */
+        /* Tool Card */
+
         .tool-card {
-            padding: 30px;
-            border-radius: 20px;
-            background: rgba(15, 23, 42, 0.65);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(15px);
-            transition: 0.3s;
             position: relative;
+
+            padding: 30px;
+
+            min-height: 245px;
+
+            display: flex;
+            flex-direction: column;
+
+            border-radius: 20px;
+
+            background: rgba(15, 23, 42, 0.65);
+
+            border: 1px solid rgba(255, 255, 255, 0.08);
+
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+
+            transition: 0.35s;
+
             overflow: hidden;
         }
 
         .tool-card::before {
             content: "";
+
             position: absolute;
-            width: 120px;
-            height: 120px;
+
+            width: 140px;
+            height: 140px;
+
             background: #2563eb;
-            filter: blur(70px);
+
             opacity: 0;
-            top: -50px;
-            right: -50px;
-            transition: 0.3s;
+
+            filter: blur(70px);
+
+            border-radius: 50%;
+
+            top: -60px;
+            right: -60px;
+
+            transition: 0.35s;
         }
 
         .tool-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(96, 165, 250, 0.3);
-            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
+            transform: translateY(-7px);
+
+            border-color: rgba(96, 165, 250, 0.30);
+
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.30);
         }
 
         .tool-card:hover::before {
-            opacity: 0.15;
+            opacity: 0.18;
         }
 
-        .icon {
-            width: 55px;
-            height: 55px;
+        .tool-icon {
+            width: 52px;
+            height: 52px;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
             border-radius: 15px;
+
+            font-size: 25px;
+
             background: rgba(59, 130, 246, 0.12);
-            font-size: 27px;
+
+            border: 1px solid rgba(96, 165, 250, 0.15);
+
             margin-bottom: 20px;
         }
 
         .tool-card h3 {
             font-size: 21px;
+
             margin-bottom: 10px;
         }
 
         .tool-card p {
             color: #94a3b8;
+
             font-size: 14px;
+
             line-height: 1.6;
-            min-height: 45px;
-            margin-bottom: 22px;
+
+            flex-grow: 1;
         }
 
-        /* TOOL BUTTON */
+        /* Same Use Tool Button */
+
         .use-tool {
-            display: inline-block;
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+
+            margin-top: 22px;
+
             padding: 11px 17px;
+
             border-radius: 10px;
-            background: linear-gradient(135deg, #2563eb, #7c3aed);
+
             color: #ffffff;
+
             text-decoration: none;
+
             font-size: 14px;
+
             font-weight: 700;
+
+            background: linear-gradient(
+                135deg,
+                #2563eb,
+                #7c3aed
+            );
+
             transition: 0.3s;
+
+            width: fit-content;
         }
 
         .use-tool:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.25);
+
+            box-shadow:
+                0 10px 25px rgba(37, 99, 235, 0.25);
         }
 
-        /* FOOTER */
+        /* Footer */
+
         footer {
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 30px 20px;
-            text-align: center;
+            padding: 30px 7%;
+
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 20px;
+
+            flex-wrap: wrap;
+
             color: #64748b;
+
             font-size: 13px;
         }
 
@@ -272,52 +415,66 @@
         }
 
         .footer-links {
-            margin-top: 10px;
+            display: flex;
+
+            gap: 18px;
+
+            flex-wrap: wrap;
         }
 
         .footer-links a {
             color: #94a3b8;
+
             text-decoration: none;
-            margin: 0 8px;
+
             transition: 0.3s;
         }
 
         .footer-links a:hover {
-            color: #60a5fa;
+            color: #ffffff;
         }
 
-        /* TABLET */
+        /* Tablet */
+
         @media (max-width: 850px) {
+
             .tools-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
 
             .hero {
-                padding-top: 75px;
+                padding-top: 70px;
             }
+
         }
 
-        /* MOBILE */
+        /* Mobile */
+
         @media (max-width: 560px) {
-            .navbar {
-                padding: 15px;
+
+            header {
+                padding: 16px 5%;
             }
 
             .logo {
-                font-size: 21px;
+                font-size: 22px;
             }
 
             .hero {
-                padding: 65px 18px 55px;
+                padding: 65px 18px 50px;
             }
 
             .hero h1 {
-                font-size: 45px;
-                letter-spacing: -2px;
+                letter-spacing: -1.5px;
             }
 
             .hero p {
-                font-size: 16px;
+                font-size: 15px;
+            }
+
+            .tools-section {
+                padding-left: 18px;
+                padding-right: 18px;
             }
 
             .tools-grid {
@@ -328,32 +485,42 @@
                 padding: 25px;
             }
 
-            .section-title h2 {
-                font-size: 29px;
+            footer {
+                flex-direction: column;
+
+                text-align: center;
+
+                justify-content: center;
             }
+
+            .footer-links {
+                justify-content: center;
+            }
+
         }
+
     </style>
 </head>
 
 <body>
 
-    <!-- HEADER -->
+    <!-- Header -->
+
     <header>
-        <div class="navbar">
 
-            <div class="logo">
-                <span>Novix</span> Tool
-            </div>
-
-            <a href="#tools" class="nav-link">
-                Tools
-            </a>
-
+        <div class="logo">
+            Novix Tool
         </div>
+
+        <a href="#tools" class="nav-link">
+            Explore Tools
+        </a>
+
     </header>
 
 
-    <!-- HERO -->
+    <!-- Hero Section -->
+
     <section class="hero">
 
         <div class="tag">
@@ -362,38 +529,44 @@
 
         <h1>
             Powerful Tools.<br>
-            <span>Made Simple.</span>
+            Made Simple.
         </h1>
 
         <p>
-            Free online tools designed to make your everyday work
-            faster, easier and more productive.
+            Free and easy-to-use online tools for images,
+            PDFs, QR codes and text. No complicated software.
+            Just upload, use and download.
         </p>
 
-        <a href="#tools" class="hero-button">
+        <a href="#tools" class="explore-btn">
             Explore Tools →
         </a>
 
     </section>
 
 
-    <!-- TOOLS -->
+    <!-- Tools -->
+
     <section class="tools-section" id="tools">
 
-        <div class="section-title">
-            <h2>Our Free Tools</h2>
-            <p>Choose a tool and get started instantly.</p>
-        </div>
+        <h2 class="section-title">
+            Our Tools
+        </h2>
+
+        <p class="section-subtitle">
+            Everything you need, right in your browser.
+        </p>
 
 
         <div class="tools-grid">
 
 
-            <!-- 1. BACKGROUND REMOVER -->
+            <!-- Background Remover -->
+
             <div class="tool-card">
 
-                <div class="icon">
-                    🪄
+                <div class="tool-icon">
+                    ✂️
                 </div>
 
                 <h3>
@@ -401,21 +574,25 @@
                 </h3>
 
                 <p>
-                    Remove image backgrounds quickly and easily
-                    directly in your browser.
+                    Remove image backgrounds automatically
+                    and create transparent PNG images.
                 </p>
 
-                <a href="background-remover.html" class="use-tool">
+                <a
+                    href="background-remover.html"
+                    class="use-tool"
+                >
                     Use Tool →
                 </a>
 
             </div>
 
 
-            <!-- 2. JPG TO PDF -->
+            <!-- JPG to PDF -->
+
             <div class="tool-card">
 
-                <div class="icon">
+                <div class="tool-icon">
                     📄
                 </div>
 
@@ -424,21 +601,25 @@
                 </h3>
 
                 <p>
-                    Convert JPG, PNG and other images into a
-                    downloadable PDF file.
+                    Convert JPG, PNG and WEBP images
+                    into a downloadable PDF.
                 </p>
 
-                <a href="jpg-to-pdf.html" class="use-tool">
+                <a
+                    href="jpg-to-pdf.html"
+                    class="use-tool"
+                >
                     Use Tool →
                 </a>
 
             </div>
 
 
-            <!-- 3. IMAGE TO PNG -->
+            <!-- Image to PNG -->
+
             <div class="tool-card">
 
-                <div class="icon">
+                <div class="tool-icon">
                     🖼️
                 </div>
 
@@ -447,21 +628,25 @@
                 </h3>
 
                 <p>
-                    Convert your images to PNG format quickly
-                    and easily.
+                    Convert your images into high-quality
+                    PNG format quickly and easily.
                 </p>
 
-                <a href="image-to-png.html" class="use-tool">
+                <a
+                    href="image-to-png.html"
+                    class="use-tool"
+                >
                     Use Tool →
                 </a>
 
             </div>
 
 
-            <!-- 4. IMAGE COMPRESSOR -->
+            <!-- Image Compressor -->
+
             <div class="tool-card">
 
-                <div class="icon">
+                <div class="tool-icon">
                     📦
                 </div>
 
@@ -470,21 +655,25 @@
                 </h3>
 
                 <p>
-                    Compress images and reduce file size while
-                    maintaining good quality.
+                    Compress images and reduce file size
+                    while maintaining good quality.
                 </p>
 
-                <a href="image-compressor.html" class="use-tool">
+                <a
+                    href="image-compressor.html"
+                    class="use-tool"
+                >
                     Use Tool →
                 </a>
 
             </div>
 
 
-            <!-- 5. QR CODE GENERATOR -->
+            <!-- QR Code Generator -->
+
             <div class="tool-card">
 
-                <div class="icon">
+                <div class="tool-icon">
                     🔳
                 </div>
 
@@ -493,21 +682,25 @@
                 </h3>
 
                 <p>
-                    Create QR codes from text, links and other
-                    information instantly.
+                    Create QR codes from text, links
+                    and other information instantly.
                 </p>
 
-                <a href="qr-code-generator.html" class="use-tool">
+                <a
+                    href="qr-code-generator.html"
+                    class="use-tool"
+                >
                     Use Tool →
                 </a>
 
             </div>
 
 
-            <!-- 6. WORD COUNTER -->
+            <!-- Word Counter -->
+
             <div class="tool-card">
 
-                <div class="icon">
+                <div class="tool-icon">
                     📝
                 </div>
 
@@ -516,11 +709,14 @@
                 </h3>
 
                 <p>
-                    Count words, characters, sentences and
-                    estimate reading time.
+                    Count words, characters and sentences
+                    with an estimated reading time.
                 </p>
 
-                <a href="word-counter.html" class="use-tool">
+                <a
+                    href="word-counter.html"
+                    class="use-tool"
+                >
                     Use Tool →
                 </a>
 
@@ -532,7 +728,8 @@
     </section>
 
 
-    <!-- FOOTER -->
+    <!-- Footer -->
+
     <footer>
 
         <div>
@@ -546,9 +743,22 @@
                 Privacy Policy
             </a>
 
+            <a href="terms.html">
+                Terms & Conditions
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
         </div>
 
     </footer>
 
+
 </body>
-                </html>
+</html>
