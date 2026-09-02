@@ -53,6 +53,7 @@
             z-index: -1;
         }
 
+        /* HEADER */
         header {
             position: sticky;
             top: 0;
@@ -94,6 +95,7 @@
             color: #ffffff;
         }
 
+        /* HERO */
         .hero {
             max-width: 900px;
             margin: auto;
@@ -151,6 +153,7 @@
             box-shadow: 0 15px 40px rgba(147, 51, 234, 0.3);
         }
 
+        /* TOOLS */
         .tools-section {
             max-width: 1150px;
             margin: auto;
@@ -177,6 +180,7 @@
             gap: 22px;
         }
 
+        /* TOOL CARD */
         .tool-card {
             padding: 30px;
             border-radius: 20px;
@@ -236,6 +240,7 @@
             margin-bottom: 22px;
         }
 
+        /* TOOL BUTTON */
         .use-tool {
             display: inline-block;
             padding: 11px 17px;
@@ -253,6 +258,7 @@
             box-shadow: 0 8px 25px rgba(59, 130, 246, 0.25);
         }
 
+        /* FOOTER */
         footer {
             border-top: 1px solid rgba(255, 255, 255, 0.08);
             padding: 30px 20px;
@@ -265,6 +271,22 @@
             color: #94a3b8;
         }
 
+        .footer-links {
+            margin-top: 10px;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            margin: 0 8px;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #60a5fa;
+        }
+
+        /* TABLET */
         @media (max-width: 850px) {
             .tools-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -275,6 +297,7 @@
             }
         }
 
+        /* MOBILE */
         @media (max-width: 560px) {
             .navbar {
                 padding: 15px;
@@ -317,6 +340,7 @@
     <!-- HEADER -->
     <header>
         <div class="navbar">
+
             <div class="logo">
                 <span>Novix</span> Tool
             </div>
@@ -324,6 +348,7 @@
             <a href="#tools" class="nav-link">
                 Tools
             </a>
+
         </div>
     </header>
 
@@ -510,10 +535,20 @@
     <!-- FOOTER -->
     <footer>
 
-        © 2026 <strong>Novix Tool</strong>.
-        All rights reserved.
+        <div>
+            © 2026 <strong>Novix Tool</strong>.
+            All rights reserved.
+        </div>
+
+        <div class="footer-links">
+
+            <a href="privacy-policy.html">
+                Privacy Policy
+            </a>
+
+        </div>
 
     </footer>
 
 </body>
-</html>
+                </html>
