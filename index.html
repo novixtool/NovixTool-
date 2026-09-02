@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Novix Tool - Free Online Tools</title>
-    <meta name="description" content="Novix Tool - Free, fast and simple online tools for everyone.">
+
+    <meta name="description" content="Novix Tool provides simple, fast and free online tools for image conversion, compression, QR codes, word counting, PDF conversion and background removal.">
 
     <style>
         * {
@@ -22,11 +23,11 @@
             font-family: Arial, Helvetica, sans-serif;
             background: #070b17;
             color: #ffffff;
+            min-height: 100vh;
             overflow-x: hidden;
         }
 
-        /* BACKGROUND GLOW */
-
+        /* Background Glow */
         body::before {
             content: "";
             position: fixed;
@@ -34,10 +35,9 @@
             height: 500px;
             background: #2563eb;
             filter: blur(180px);
-            opacity: 0.15;
+            opacity: 0.18;
             top: -200px;
-            left: -180px;
-            pointer-events: none;
+            left: -150px;
             z-index: -1;
         }
 
@@ -46,265 +46,235 @@
             position: fixed;
             width: 500px;
             height: 500px;
-            background: #7c3aed;
+            background: #9333ea;
             filter: blur(180px);
-            opacity: 0.12;
+            opacity: 0.15;
             right: -200px;
             bottom: -200px;
-            pointer-events: none;
             z-index: -1;
         }
 
-
-        /* NAVBAR */
-
+        /* Header */
         header {
-            width: 100%;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-            background: rgba(7,11,23,0.75);
-            backdrop-filter: blur(15px);
             position: sticky;
             top: 0;
             z-index: 100;
+            background: rgba(7, 11, 23, 0.75);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .navbar {
             max-width: 1150px;
             margin: auto;
-            padding: 18px 22px;
+            padding: 18px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
         .logo {
-            color: white;
-            text-decoration: none;
-            font-size: 25px;
+            font-size: 24px;
             font-weight: 800;
             letter-spacing: -0.5px;
         }
 
         .logo span {
-            color: #4f8cff;
+            background: linear-gradient(90deg, #3b82f6, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .nav-badge {
-            padding: 7px 13px;
-            border-radius: 30px;
-            background: rgba(37,99,235,0.12);
-            border: 1px solid rgba(79,140,255,0.25);
-            color: #8db5ff;
-            font-size: 13px;
-            font-weight: 600;
+        .nav-link {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
         }
 
+        .nav-link:hover {
+            color: #ffffff;
+        }
 
-        /* HERO */
-
+        /* Hero */
         .hero {
-            max-width: 950px;
+            max-width: 900px;
             margin: auto;
-            padding: 95px 20px 75px;
             text-align: center;
+            padding: 95px 20px 70px;
         }
 
-        .hero-tag {
+        .tag {
             display: inline-block;
             padding: 8px 15px;
-            border-radius: 50px;
-            border: 1px solid rgba(79,140,255,0.3);
-            background: rgba(37,99,235,0.10);
-            color: #8db5ff;
+            border-radius: 30px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.25);
+            color: #93c5fd;
             font-size: 13px;
-            font-weight: 700;
             margin-bottom: 22px;
         }
 
         .hero h1 {
-            font-size: clamp(42px, 7vw, 72px);
+            font-size: clamp(42px, 7vw, 76px);
             line-height: 1.05;
             letter-spacing: -3px;
             margin-bottom: 22px;
         }
 
-        .gradient-text {
-            background: linear-gradient(90deg, #4f8cff, #a855f7);
+        .hero h1 span {
+            background: linear-gradient(90deg, #60a5fa, #c084fc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .hero p {
-            max-width: 680px;
+            max-width: 650px;
             margin: auto;
-            color: #9ca8bd;
+            color: #94a3b8;
             font-size: 18px;
             line-height: 1.7;
         }
 
         .hero-button {
             display: inline-block;
-            margin-top: 30px;
+            margin-top: 32px;
             padding: 14px 25px;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #2563eb, #7c3aed);
-            color: white;
+            border-radius: 12px;
+            color: #ffffff;
             text-decoration: none;
             font-weight: 700;
-            box-shadow: 0 10px 35px rgba(37,99,235,0.25);
-            transition: 0.25s;
+            background: linear-gradient(135deg, #2563eb, #9333ea);
+            box-shadow: 0 10px 35px rgba(37, 99, 235, 0.25);
+            transition: 0.3s;
         }
 
         .hero-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 45px rgba(37,99,235,0.4);
+            box-shadow: 0 15px 40px rgba(147, 51, 234, 0.3);
         }
 
-
-        /* TOOLS SECTION */
-
-        .tools {
+        /* Tools Section */
+        .tools-section {
             max-width: 1150px;
             margin: auto;
-            padding: 20px 22px 90px;
+            padding: 20px 20px 90px;
         }
 
-        .section-heading {
+        .section-title {
             text-align: center;
             margin-bottom: 35px;
         }
 
-        .section-heading h2 {
-            font-size: 32px;
-            margin-bottom: 8px;
+        .section-title h2 {
+            font-size: 34px;
+            margin-bottom: 10px;
         }
 
-        .section-heading p {
-            color: #7f8ba3;
-            font-size: 15px;
+        .section-title p {
+            color: #94a3b8;
         }
 
-
-        /* GRID */
-
-        .grid {
+        .tools-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            gap: 22px;
         }
 
-
-        /* TOOL CARD */
-
+        /* Tool Card */
         .tool-card {
+            padding: 30px;
+            border-radius: 20px;
+            background: rgba(15, 23, 42, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            transition: 0.3s;
             position: relative;
             overflow: hidden;
-            padding: 28px;
-            border-radius: 18px;
-            border: 1px solid rgba(255,255,255,0.09);
-            background: rgba(255,255,255,0.045);
-            backdrop-filter: blur(12px);
-            transition: 0.3s ease;
         }
 
         .tool-card::before {
             content: "";
             position: absolute;
-            width: 150px;
-            height: 150px;
+            width: 120px;
+            height: 120px;
             background: #2563eb;
-            filter: blur(80px);
+            filter: blur(70px);
             opacity: 0;
-            top: -70px;
-            right: -70px;
+            top: -50px;
+            right: -50px;
             transition: 0.3s;
         }
 
         .tool-card:hover {
-            transform: translateY(-7px);
-            border-color: rgba(79,140,255,0.35);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+            transform: translateY(-6px);
+            border-color: rgba(96, 165, 250, 0.3);
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
         }
 
         .tool-card:hover::before {
-            opacity: 0.2;
+            opacity: 0.15;
         }
-
-
-        /* ICON */
 
         .icon {
             width: 55px;
             height: 55px;
-            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
+            border-radius: 15px;
+            background: rgba(59, 130, 246, 0.12);
             font-size: 27px;
-            background: linear-gradient(
-                135deg,
-                rgba(37,99,235,0.18),
-                rgba(124,58,237,0.18)
-            );
-            border: 1px solid rgba(79,140,255,0.15);
             margin-bottom: 20px;
         }
 
         .tool-card h3 {
-            font-size: 20px;
+            font-size: 21px;
             margin-bottom: 10px;
         }
 
         .tool-card p {
-            color: #8b97ad;
+            color: #94a3b8;
             font-size: 14px;
             line-height: 1.6;
             min-height: 45px;
             margin-bottom: 22px;
         }
 
-
-        /* USE TOOL BUTTON */
-
+        /* Same Button For All Tools */
         .use-tool {
             display: inline-block;
-            padding: 11px 20px;
-            border-radius: 9px;
-            background: linear-gradient(135deg, #2563eb, #4f46e5);
-            color: white;
+            padding: 11px 17px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: #ffffff;
             text-decoration: none;
             font-size: 14px;
             font-weight: 700;
-            box-shadow: 0 7px 20px rgba(37,99,235,0.2);
-            transition: 0.25s;
+            transition: 0.3s;
         }
 
         .use-tool:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 28px rgba(37,99,235,0.35);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.25);
         }
 
-
-        /* FOOTER */
-
+        /* Footer */
         footer {
-            border-top: 1px solid rgba(255,255,255,0.08);
-            padding: 35px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 30px 20px;
             text-align: center;
-            color: #69758b;
-            background: rgba(0,0,0,0.15);
+            color: #64748b;
+            font-size: 13px;
         }
 
         footer strong {
-            color: #ffffff;
+            color: #94a3b8;
         }
 
-
-        /* MOBILE */
-
+        /* Tablet */
         @media (max-width: 850px) {
-
-            .grid {
+            .tools-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
 
@@ -313,22 +283,22 @@
             }
         }
 
+        /* Mobile */
         @media (max-width: 560px) {
-
             .navbar {
-                padding: 16px;
+                padding: 15px;
             }
 
-            .nav-badge {
-                display: none;
+            .logo {
+                font-size: 21px;
             }
 
             .hero {
-                padding: 65px 18px 60px;
+                padding: 65px 18px 55px;
             }
 
             .hero h1 {
-                font-size: 43px;
+                font-size: 45px;
                 letter-spacing: -2px;
             }
 
@@ -336,17 +306,16 @@
                 font-size: 16px;
             }
 
-            .tools {
-                padding-left: 16px;
-                padding-right: 16px;
-            }
-
-            .grid {
+            .tools-grid {
                 grid-template-columns: 1fr;
             }
 
             .tool-card {
                 padding: 25px;
+            }
+
+            .section-title h2 {
+                font-size: 29px;
             }
         }
     </style>
@@ -354,42 +323,35 @@
 
 <body>
 
-
-    <!-- NAVBAR -->
-
+    <!-- HEADER -->
     <header>
-
         <div class="navbar">
-
-            <a href="index.html" class="logo">
-                Novix <span>Tool</span>
-            </a>
-
-            <div class="nav-badge">
-                ⚡ Free Online Tools
+            <div class="logo">
+                <span>Novix</span> Tool
             </div>
 
+            <a href="#tools" class="nav-link">
+                Tools
+            </a>
         </div>
-
     </header>
 
 
     <!-- HERO -->
-
     <section class="hero">
 
-        <div class="hero-tag">
+        <div class="tag">
             ✨ SIMPLE • FAST • FREE
         </div>
 
         <h1>
             Powerful Tools.<br>
-            <span class="gradient-text">Made Simple.</span>
+            <span>Made Simple.</span>
         </h1>
 
         <p>
-            A collection of simple and useful online tools
-            designed to make your everyday tasks faster and easier.
+            Free online tools designed to make your everyday work
+            faster, easier and more productive.
         </p>
 
         <a href="#tools" class="hero-button">
@@ -400,25 +362,18 @@
 
 
     <!-- TOOLS -->
+    <section class="tools-section" id="tools">
 
-    <section class="tools" id="tools">
-
-        <div class="section-heading">
-
-            <h2>🚀 Our Tools</h2>
-
-            <p>
-                Choose a tool and get started instantly.
-            </p>
-
+        <div class="section-title">
+            <h2>Our Free Tools</h2>
+            <p>Choose a tool and get started instantly.</p>
         </div>
 
 
-        <div class="grid">
+        <div class="tools-grid">
 
 
             <!-- IMAGE TO PNG -->
-
             <div class="tool-card">
 
                 <div class="icon">
@@ -430,13 +385,11 @@
                 </h3>
 
                 <p>
-                    Convert your images to PNG format quickly and easily.
+                    Convert your images to PNG format quickly
+                    and easily.
                 </p>
 
-                <a
-                    href="image-to-png.html"
-                    class="use-tool"
-                >
+                <a href="image-to-png.html" class="use-tool">
                     Use Tool →
                 </a>
 
@@ -444,7 +397,6 @@
 
 
             <!-- IMAGE COMPRESSOR -->
-
             <div class="tool-card">
 
                 <div class="icon">
@@ -456,21 +408,18 @@
                 </h3>
 
                 <p>
-                    Reduce image file size while keeping great quality.
+                    Compress images and reduce file size while
+                    maintaining good quality.
                 </p>
 
-                <a
-                    href="image-compressor.html"
-                    class="use-tool"
-                >
+                <a href="image-compressor.html" class="use-tool">
                     Use Tool →
                 </a>
 
             </div>
 
 
-            <!-- QR CODE -->
-
+            <!-- QR CODE GENERATOR -->
             <div class="tool-card">
 
                 <div class="icon">
@@ -482,13 +431,11 @@
                 </h3>
 
                 <p>
-                    Create QR codes quickly for links, text and more.
+                    Create QR codes from text, links and other
+                    information instantly.
                 </p>
 
-                <a
-                    href="qr-code-generator.html"
-                    class="use-tool"
-                >
+                <a href="qr-code-generator.html" class="use-tool">
                     Use Tool →
                 </a>
 
@@ -496,11 +443,10 @@
 
 
             <!-- WORD COUNTER -->
-
             <div class="tool-card">
 
                 <div class="icon">
-                    🔢
+                    📝
                 </div>
 
                 <h3>
@@ -508,13 +454,11 @@
                 </h3>
 
                 <p>
-                    Count words, characters and sentences instantly.
+                    Count words, characters, sentences and
+                    estimate reading time.
                 </p>
 
-                <a
-                    href="word-counter.html"
-                    class="use-tool"
-                >
+                <a href="word-counter.html" class="use-tool">
                     Use Tool →
                 </a>
 
@@ -522,7 +466,6 @@
 
 
             <!-- JPG TO PDF -->
-
             <div class="tool-card">
 
                 <div class="icon">
@@ -534,39 +477,36 @@
                 </h3>
 
                 <p>
-                    Convert JPG, PNG and WEBP images into PDF.
+                    Convert JPG, PNG and other images into a
+                    downloadable PDF file.
                 </p>
 
-                <a
-                    href="jpg-to-pdf.html"
-                    class="use-tool"
-                >
+                <a href="jpg-to-pdf.html" class="use-tool">
                     Use Tool →
                 </a>
-                <!-- BACKGROUND REMOVER -->
 
-<div class="tool-card">
+            </div>
 
-    <div class="icon">
-        🪄
-    </div>
 
-    <h3>
-        Background Remover
-    </h3>
+            <!-- BACKGROUND REMOVER -->
+            <div class="tool-card">
 
-    <p>
-        Remove image backgrounds quickly and easily.
-    </p>
+                <div class="icon">
+                    🪄
+                </div>
 
-    <a
-        href="background-remover.html"
-        class="use-tool"
-    >
-        Use Tool →
-    </a>
+                <h3>
+                    Background Remover
+                </h3>
 
-</div>
+                <p>
+                    Remove image backgrounds quickly and easily
+                    directly in your browser.
+                </p>
+
+                <a href="background-remover.html" class="use-tool">
+                    Use Tool →
+                </a>
 
             </div>
 
@@ -577,16 +517,13 @@
 
 
     <!-- FOOTER -->
-
     <footer>
 
-        <p>
-            © 2026 <strong>Novix Tool</strong>.
-            All Rights Reserved.
-        </p>
+        © 2026 <strong>Novix Tool</strong>.
+        All rights reserved.
 
     </footer>
 
 
 </body>
-</html>
+    </html>
