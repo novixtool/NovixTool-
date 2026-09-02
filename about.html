@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Learn more about Novix Tool - simple, fast and free online tools.">
+
+    <meta name="author" content="Novix Tool">
+
+    <title>About Us - Novix Tool</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #070b17;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: #2563eb;
+            opacity: 0.10;
+            filter: blur(120px);
+            border-radius: 50%;
+            top: -180px;
+            left: -150px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: #7c3aed;
+            opacity: 0.10;
+            filter: blur(120px);
+            border-radius: 50%;
+            bottom: -180px;
+            right: -150px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            padding: 18px 7%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            background: rgba(7, 11, 23, 0.75);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 800;
+
+            background: linear-gradient(
+                90deg,
+                #60a5fa,
+                #a78bfa
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .home-link {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .home-link:hover {
+            color: #ffffff;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 70px 22px 90px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .tag {
+            display: inline-block;
+
+            padding: 8px 16px;
+
+            border-radius: 50px;
+
+            background: rgba(59, 130, 246, 0.10);
+
+            border: 1px solid rgba(96, 165, 250, 0.25);
+
+            color: #93c5fd;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: clamp(38px, 7vw, 58px);
+
+            margin-bottom: 18px;
+
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                #93c5fd,
+                #c4b5fd
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .intro {
+            color: #94a3b8;
+            font-size: 17px;
+            line-height: 1.7;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .content {
+            background: rgba(15, 23, 42, 0.65);
+
+            border: 1px solid rgba(255, 255, 255, 0.08);
+
+            border-radius: 20px;
+
+            padding: 35px;
+
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+        }
+
+        .content h2 {
+            font-size: 24px;
+            margin-bottom: 14px;
+            margin-top: 30px;
+        }
+
+        .content h2:first-child {
+            margin-top: 0;
+        }
+
+        .content p {
+            color: #94a3b8;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .content ul {
+            padding-left: 22px;
+            margin-bottom: 15px;
+        }
+
+        .content li {
+            color: #94a3b8;
+            line-height: 1.8;
+            margin-bottom: 7px;
+        }
+
+        .back-btn {
+            display: inline-block;
+
+            margin-top: 30px;
+
+            padding: 12px 20px;
+
+            border-radius: 10px;
+
+            color: #ffffff;
+
+            text-decoration: none;
+
+            font-weight: 700;
+
+            background: linear-gradient(
+                135deg,
+                #2563eb,
+                #7c3aed
+            );
+
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        footer {
+            padding: 30px 7%;
+
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+
+            text-align: center;
+
+            color: #64748b;
+
+            font-size: 13px;
+        }
+
+        footer strong {
+            color: #94a3b8;
+        }
+
+        @media (max-width: 560px) {
+
+            header {
+                padding: 16px 5%;
+            }
+
+            .logo {
+                font-size: 22px;
+            }
+
+            .container {
+                padding: 55px 18px 70px;
+            }
+
+            .content {
+                padding: 25px;
+            }
+
+            .content h2 {
+                font-size: 21px;
+            }
+
+            .intro {
+                font-size: 15px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <div class="logo">
+            Novix Tool
+        </div>
+
+        <a href="index.html" class="home-link">
+            Home
+        </a>
+
+    </header>
+
+
+    <main class="container">
+
+        <section class="hero">
+
+            <div class="tag">
+                ✨ ABOUT NOVIX TOOL
+            </div>
+
+            <h1>
+                About Us
+            </h1>
+
+            <p class="intro">
+                Novix Tool is a collection of simple, fast and
+                easy-to-use online tools designed to make everyday
+                digital tasks easier.
+            </p>
+
+        </section>
+
+
+        <section class="content">
+
+            <h2>
+                What is Novix Tool?
+            </h2>
+
+            <p>
+                Novix Tool is an online platform that provides
+                useful tools for working with images, PDFs,
+                QR codes and text.
+            </p>
+
+            <p>
+                Our goal is to make common digital tasks simple
+                and accessible without requiring complicated
+                software or technical knowledge.
+            </p>
+
+
+            <h2>
+                Our Tools
+            </h2>
+
+            <p>
+                Novix Tool currently provides a growing collection
+                of browser-based tools, including:
+            </p>
+
+            <ul>
+                <li>Background Remover</li>
+                <li>JPG to PDF Converter</li>
+                <li>Image to PNG Converter</li>
+                <li>Image Compressor</li>
+                <li>QR Code Generator</li>
+                <li>Word Counter</li>
+            </ul>
+
+
+            <h2>
+                Our Mission
+            </h2>
+
+            <p>
+                Our mission is to build useful online tools that
+                are straightforward, fast and convenient to use.
+                We aim to continuously improve Novix Tool and add
+                more helpful tools over time.
+            </p>
+
+
+            <h2>
+                Simple. Fast. Useful.
+            </h2>
+
+            <p>
+                We believe online tools should be easy to understand.
+                That's why we focus on clean design, simple interfaces
+                and practical features.
+            </p>
+
+
+            <h2>
+                Contact Us
+            </h2>
+
+            <p>
+                If you have a question, suggestion or feedback about
+                Novix Tool, you can contact us through our Contact page.
+            </p>
+
+            <a href="contact.html" class="back-btn">
+                Contact Us →
+            </a>
+
+            <br>
+
+            <a href="index.html" class="back-btn">
+                ← Back to Novix Tool
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        © 2026 <strong>Novix Tool</strong>.
+        All rights reserved.
+
+    </footer>
+
+</body>
+</html>
