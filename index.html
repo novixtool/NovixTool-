@@ -27,7 +27,6 @@
             overflow-x: hidden;
         }
 
-        /* Background Glow */
         body::before {
             content: "";
             position: fixed;
@@ -54,7 +53,6 @@
             z-index: -1;
         }
 
-        /* Header */
         header {
             position: sticky;
             top: 0;
@@ -96,7 +94,6 @@
             color: #ffffff;
         }
 
-        /* Hero */
         .hero {
             max-width: 900px;
             margin: auto;
@@ -154,7 +151,6 @@
             box-shadow: 0 15px 40px rgba(147, 51, 234, 0.3);
         }
 
-        /* Tools Section */
         .tools-section {
             max-width: 1150px;
             margin: auto;
@@ -181,7 +177,6 @@
             gap: 22px;
         }
 
-        /* Tool Card */
         .tool-card {
             padding: 30px;
             border-radius: 20px;
@@ -241,7 +236,6 @@
             margin-bottom: 22px;
         }
 
-        /* Same Button For All Tools */
         .use-tool {
             display: inline-block;
             padding: 11px 17px;
@@ -259,7 +253,6 @@
             box-shadow: 0 8px 25px rgba(59, 130, 246, 0.25);
         }
 
-        /* Footer */
         footer {
             border-top: 1px solid rgba(255, 255, 255, 0.08);
             padding: 30px 20px;
@@ -272,7 +265,6 @@
             color: #94a3b8;
         }
 
-        /* Tablet */
         @media (max-width: 850px) {
             .tools-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -283,7 +275,6 @@
             }
         }
 
-        /* Mobile */
         @media (max-width: 560px) {
             .navbar {
                 padding: 15px;
@@ -373,122 +364,7 @@
         <div class="tools-grid">
 
 
-            <!-- IMAGE TO PNG -->
-            <div class="tool-card">
-
-                <div class="icon">
-                    🖼️
-                </div>
-
-                <h3>
-                    Image to PNG
-                </h3>
-
-                <p>
-                    Convert your images to PNG format quickly
-                    and easily.
-                </p>
-
-                <a href="image-to-png.html" class="use-tool">
-                    Use Tool →
-                </a>
-
-            </div>
-
-
-            <!-- IMAGE COMPRESSOR -->
-            <div class="tool-card">
-
-                <div class="icon">
-                    📦
-                </div>
-
-                <h3>
-                    Image Compressor
-                </h3>
-
-                <p>
-                    Compress images and reduce file size while
-                    maintaining good quality.
-                </p>
-
-                <a href="image-compressor.html" class="use-tool">
-                    Use Tool →
-                </a>
-
-            </div>
-
-
-            <!-- QR CODE GENERATOR -->
-            <div class="tool-card">
-
-                <div class="icon">
-                    🔳
-                </div>
-
-                <h3>
-                    QR Code Generator
-                </h3>
-
-                <p>
-                    Create QR codes from text, links and other
-                    information instantly.
-                </p>
-
-                <a href="qr-code-generator.html" class="use-tool">
-                    Use Tool →
-                </a>
-
-            </div>
-
-
-            <!-- WORD COUNTER -->
-            <div class="tool-card">
-
-                <div class="icon">
-                    📝
-                </div>
-
-                <h3>
-                    Word Counter
-                </h3>
-
-                <p>
-                    Count words, characters, sentences and
-                    estimate reading time.
-                </p>
-
-                <a href="word-counter.html" class="use-tool">
-                    Use Tool →
-                </a>
-
-            </div>
-
-
-            <!-- JPG TO PDF -->
-            <div class="tool-card">
-
-                <div class="icon">
-                    📄
-                </div>
-
-                <h3>
-                    JPG to PDF
-                </h3>
-
-                <p>
-                    Convert JPG, PNG and other images into a
-                    downloadable PDF file.
-                </p>
-
-                <a href="jpg-to-pdf.html" class="use-tool">
-                    Use Tool →
-                </a>
-
-            </div>
-
-
-            <!-- BACKGROUND REMOVER -->
+            <!-- 1. BACKGROUND REMOVER -->
             <div class="tool-card">
 
                 <div class="icon">
@@ -511,6 +387,121 @@
             </div>
 
 
+            <!-- 2. JPG TO PDF -->
+            <div class="tool-card">
+
+                <div class="icon">
+                    📄
+                </div>
+
+                <h3>
+                    JPG to PDF
+                </h3>
+
+                <p>
+                    Convert JPG, PNG and other images into a
+                    downloadable PDF file.
+                </p>
+
+                <a href="jpg-to-pdf.html" class="use-tool">
+                    Use Tool →
+                </a>
+
+            </div>
+
+
+            <!-- 3. IMAGE TO PNG -->
+            <div class="tool-card">
+
+                <div class="icon">
+                    🖼️
+                </div>
+
+                <h3>
+                    Image to PNG
+                </h3>
+
+                <p>
+                    Convert your images to PNG format quickly
+                    and easily.
+                </p>
+
+                <a href="image-to-png.html" class="use-tool">
+                    Use Tool →
+                </a>
+
+            </div>
+
+
+            <!-- 4. IMAGE COMPRESSOR -->
+            <div class="tool-card">
+
+                <div class="icon">
+                    📦
+                </div>
+
+                <h3>
+                    Image Compressor
+                </h3>
+
+                <p>
+                    Compress images and reduce file size while
+                    maintaining good quality.
+                </p>
+
+                <a href="image-compressor.html" class="use-tool">
+                    Use Tool →
+                </a>
+
+            </div>
+
+
+            <!-- 5. QR CODE GENERATOR -->
+            <div class="tool-card">
+
+                <div class="icon">
+                    🔳
+                </div>
+
+                <h3>
+                    QR Code Generator
+                </h3>
+
+                <p>
+                    Create QR codes from text, links and other
+                    information instantly.
+                </p>
+
+                <a href="qr-code-generator.html" class="use-tool">
+                    Use Tool →
+                </a>
+
+            </div>
+
+
+            <!-- 6. WORD COUNTER -->
+            <div class="tool-card">
+
+                <div class="icon">
+                    📝
+                </div>
+
+                <h3>
+                    Word Counter
+                </h3>
+
+                <p>
+                    Count words, characters, sentences and
+                    estimate reading time.
+                </p>
+
+                <a href="word-counter.html" class="use-tool">
+                    Use Tool →
+                </a>
+
+            </div>
+
+
         </div>
 
     </section>
@@ -524,6 +515,5 @@
 
     </footer>
 
-
 </body>
-    </html>
+</html>
