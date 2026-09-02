@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>AI Background Remover - Novix Tool</title>
-<meta name="description" content="Remove image backgrounds automatically with AI. Fast, free and private browser-based background remover.">
+
+<meta name="description"
+content="Remove image backgrounds automatically with AI. Free online background remover by Novix Tool.">
 
 <style>
 *{
@@ -41,7 +43,7 @@ body::after{
     height:420px;
     background:#7c3aed;
     filter:blur(160px);
-    opacity:.16;
+    opacity:.15;
     bottom:-180px;
     right:-150px;
     z-index:-1;
@@ -51,7 +53,7 @@ header{
     position:sticky;
     top:0;
     z-index:10;
-    background:rgba(7,11,23,.75);
+    background:rgba(7,11,23,.8);
     backdrop-filter:blur(15px);
     border-bottom:1px solid rgba(255,255,255,.08);
 }
@@ -61,15 +63,15 @@ header{
     margin:auto;
     padding:18px 20px;
     display:flex;
-    align-items:center;
     justify-content:space-between;
+    align-items:center;
 }
 
 .logo{
+    color:white;
+    text-decoration:none;
     font-size:22px;
     font-weight:800;
-    color:#fff;
-    text-decoration:none;
 }
 
 .logo span{
@@ -79,30 +81,25 @@ header{
 .back{
     color:#cbd5e1;
     text-decoration:none;
-    font-size:14px;
-}
-
-.back:hover{
-    color:#60a5fa;
 }
 
 .container{
     max-width:1000px;
     margin:auto;
-    padding:55px 20px 70px;
+    padding:50px 20px 70px;
 }
 
 .hero{
     text-align:center;
-    margin-bottom:35px;
+    margin-bottom:30px;
 }
 
 .badge{
     display:inline-block;
     padding:8px 14px;
-    border:1px solid rgba(96,165,250,.25);
-    background:rgba(37,99,235,.10);
     border-radius:30px;
+    background:rgba(37,99,235,.1);
+    border:1px solid rgba(96,165,250,.25);
     color:#93c5fd;
     font-size:13px;
     margin-bottom:18px;
@@ -110,38 +107,32 @@ header{
 
 h1{
     font-size:clamp(32px,6vw,52px);
-    line-height:1.1;
     margin-bottom:14px;
 }
 
 .hero p{
     color:#94a3b8;
-    max-width:650px;
-    margin:auto;
     line-height:1.7;
 }
 
 .tool-box{
-    background:rgba(15,23,42,.68);
+    background:rgba(15,23,42,.7);
     border:1px solid rgba(255,255,255,.09);
     border-radius:24px;
     padding:25px;
-    box-shadow:0 25px 70px rgba(0,0,0,.25);
 }
 
 .upload{
-    border:2px dashed rgba(96,165,250,.4);
+    border:2px dashed rgba(96,165,250,.45);
     border-radius:20px;
     padding:45px 20px;
     text-align:center;
     cursor:pointer;
-    transition:.2s;
     background:rgba(37,99,235,.04);
 }
 
-.upload:hover{
-    border-color:#60a5fa;
-    background:rgba(37,99,235,.08);
+.upload:active{
+    background:rgba(37,99,235,.12);
 }
 
 .upload-icon{
@@ -150,7 +141,7 @@ h1{
 }
 
 .upload h2{
-    font-size:20px;
+    font-size:21px;
     margin-bottom:8px;
 }
 
@@ -159,22 +150,18 @@ h1{
     font-size:14px;
 }
 
-input[type=file]{
+input[type="file"]{
     display:none;
 }
 
 .status{
     margin-top:18px;
-    padding:14px 16px;
+    padding:14px;
     border-radius:12px;
-    background:rgba(255,255,255,.04);
+    background:rgba(255,255,255,.05);
     color:#cbd5e1;
-    font-size:14px;
     text-align:center;
-    min-height:45px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    font-size:14px;
 }
 
 .progress-wrap{
@@ -183,7 +170,6 @@ input[type=file]{
 }
 
 .progress{
-    width:100%;
     height:8px;
     background:#172033;
     border-radius:20px;
@@ -191,10 +177,10 @@ input[type=file]{
 }
 
 .progress-bar{
-    width:0%;
     height:100%;
+    width:0%;
     background:linear-gradient(90deg,#2563eb,#7c3aed);
-    transition:width .25s;
+    transition:.3s;
 }
 
 .progress-text{
@@ -219,15 +205,18 @@ input[type=file]{
 }
 
 .preview-card h3{
-    font-size:15px;
-    margin-bottom:12px;
     color:#cbd5e1;
+    margin-bottom:12px;
 }
 
 .preview{
-    width:100%;
     min-height:260px;
     border-radius:12px;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
     background-color:#111827;
     background-image:
         linear-gradient(45deg,#1f2937 25%,transparent 25%),
@@ -235,11 +224,11 @@ input[type=file]{
         linear-gradient(45deg,transparent 75%,#1f2937 75%),
         linear-gradient(-45deg,transparent 75%,#1f2937 75%);
     background-size:24px 24px;
-    background-position:0 0,0 12px,12px -12px,-12px 0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
+    background-position:
+        0 0,
+        0 12px,
+        12px -12px,
+        -12px 0;
 }
 
 .preview img{
@@ -251,68 +240,59 @@ input[type=file]{
 .placeholder{
     color:#64748b;
     font-size:14px;
+    text-align:center;
 }
 
 .buttons{
     display:flex;
-    gap:12px;
     justify-content:center;
+    gap:12px;
     margin-top:25px;
     flex-wrap:wrap;
 }
 
 button{
     border:none;
-    padding:13px 22px;
     border-radius:12px;
+    padding:13px 22px;
     font-weight:700;
-    cursor:pointer;
     font-size:14px;
-    transition:.2s;
+    cursor:pointer;
 }
 
 .download{
+    color:white;
     background:linear-gradient(135deg,#2563eb,#7c3aed);
-    color:#fff;
-}
-
-.download:hover{
-    transform:translateY(-2px);
 }
 
 .reset{
-    background:#172033;
     color:#cbd5e1;
-}
-
-.reset:hover{
-    background:#202b40;
+    background:#172033;
 }
 
 button:disabled{
-    opacity:.45;
+    opacity:.4;
     cursor:not-allowed;
-    transform:none;
 }
 
 .info{
-    margin-top:30px;
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:15px;
+    margin-top:25px;
 }
 
 .info-card{
     padding:18px;
+    text-align:center;
+    border-radius:16px;
     background:rgba(255,255,255,.035);
     border:1px solid rgba(255,255,255,.07);
-    border-radius:16px;
-    text-align:center;
 }
 
 .info-card strong{
     display:block;
-    margin-bottom:6px;
+    margin-bottom:7px;
 }
 
 .info-card span{
@@ -324,12 +304,13 @@ button:disabled{
 footer{
     text-align:center;
     color:#64748b;
+    padding:25px;
     font-size:13px;
-    padding:25px 20px;
     border-top:1px solid rgba(255,255,255,.06);
 }
 
 @media(max-width:700px){
+
     .preview-grid{
         grid-template-columns:1fr;
     }
@@ -341,10 +322,6 @@ footer{
     .tool-box{
         padding:16px;
     }
-
-    .container{
-        padding-top:35px;
-    }
 }
 </style>
 </head>
@@ -353,143 +330,214 @@ footer{
 
 <header>
     <div class="nav">
-        <a href="index.html" class="logo">Novix <span>Tool</span></a>
-        <a href="index.html" class="back">← Back to Tools</a>
+        <a href="index.html" class="logo">
+            Novix <span>Tool</span>
+        </a>
+
+        <a href="index.html" class="back">
+            ← Back to Tools
+        </a>
     </div>
 </header>
 
 <main class="container">
 
-    <section class="hero">
-        <div class="badge">✨ AI POWERED • PRIVATE • FREE</div>
+<section class="hero">
 
-        <h1>AI Background Remover</h1>
+    <div class="badge">
+        ✨ AI POWERED • FREE
+    </div>
+
+    <h1>
+        AI Background Remover
+    </h1>
+
+    <p>
+        Remove image backgrounds automatically with AI.
+        Your image is processed directly in your browser.
+    </p>
+
+</section>
+
+
+<section class="tool-box">
+
+    <label class="upload" for="fileInput">
+
+        <div class="upload-icon">
+            🖼️
+        </div>
+
+        <h2>
+            Select an Image
+        </h2>
 
         <p>
-            Remove backgrounds automatically with AI.
-            Your image is processed directly in your browser.
+            JPG, PNG or WEBP • Tap here to upload
         </p>
-    </section>
 
-    <section class="tool-box">
+        <input
+            type="file"
+            id="fileInput"
+            accept="image/jpeg,image/png,image/webp"
+        >
 
-        <label class="upload" for="fileInput">
+    </label>
 
-            <div class="upload-icon">🖼️</div>
 
-            <h2>Select an Image</h2>
+    <div class="status" id="status">
+        ⏳ AI is loading...
+    </div>
 
-            <p>
-                JPG, PNG or WEBP • Tap here to upload
-            </p>
 
-            <input
-                type="file"
-                id="fileInput"
-                accept="image/png,image/jpeg,image/webp"
-            >
+    <div class="progress-wrap" id="progressWrap">
 
-        </label>
+        <div class="progress">
 
-        <div class="status" id="status">
-            ✅ AI ready! Select an image.
+            <div
+                class="progress-bar"
+                id="progressBar">
+            </div>
+
         </div>
 
-        <div class="progress-wrap" id="progressWrap">
-            <div class="progress">
-                <div class="progress-bar" id="progressBar"></div>
-            </div>
-
-            <div class="progress-text" id="progressText">
-                Preparing AI...
-            </div>
+        <div
+            class="progress-text"
+            id="progressText">
+            Preparing...
         </div>
 
-        <div class="preview-grid">
+    </div>
 
-            <div class="preview-card">
 
-                <h3>Original Image</h3>
+    <div class="preview-grid">
 
-                <div class="preview" id="originalPreview">
-                    <div class="placeholder">
-                        Your image will appear here
-                    </div>
-                </div>
+        <div class="preview-card">
 
-            </div>
+            <h3>
+                Original Image
+            </h3>
 
-            <div class="preview-card">
+            <div
+                class="preview"
+                id="originalPreview">
 
-                <h3>Background Removed</h3>
-
-                <div class="preview" id="resultPreview">
-                    <div class="placeholder">
-                        Result will appear here
-                    </div>
+                <div class="placeholder">
+                    Your image will appear here
                 </div>
 
             </div>
 
         </div>
 
-        <div class="buttons">
 
-            <button
-                class="download"
-                id="downloadBtn"
-                disabled
-            >
-                ⬇ Download PNG
-            </button>
+        <div class="preview-card">
 
-            <button
-                class="reset"
-                id="resetBtn"
-            >
-                ↻ Reset
-            </button>
+            <h3>
+                Background Removed
+            </h3>
+
+            <div
+                class="preview"
+                id="resultPreview">
+
+                <div class="placeholder">
+                    Result will appear here
+                </div>
+
+            </div>
 
         </div>
 
-    </section>
+    </div>
 
-    <section class="info">
 
-        <div class="info-card">
-            <strong>🤖 AI Powered</strong>
-            <span>
-                BiRefNet AI model for automatic foreground extraction.
-            </span>
-        </div>
+    <div class="buttons">
 
-        <div class="info-card">
-            <strong>🔒 Private</strong>
-            <span>
-                Images are processed locally in your browser.
-            </span>
-        </div>
+        <button
+            class="download"
+            id="downloadBtn"
+            disabled>
 
-        <div class="info-card">
-            <strong>⚡ Fast</strong>
-            <span>
-                Uses WebGPU when your browser/device supports it.
-            </span>
-        </div>
+            ⬇ Download PNG
 
-    </section>
+        </button>
+
+
+        <button
+            class="reset"
+            id="resetBtn">
+
+            ↻ Reset
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<section class="info">
+
+    <div class="info-card">
+
+        <strong>
+            🤖 AI Powered
+        </strong>
+
+        <span>
+            Automatically detects the main subject.
+        </span>
+
+    </div>
+
+
+    <div class="info-card">
+
+        <strong>
+            🔒 Private
+        </strong>
+
+        <span>
+            Your image is processed in your browser.
+        </span>
+
+    </div>
+
+
+    <div class="info-card">
+
+        <strong>
+            ⚡ Easy
+        </strong>
+
+        <span>
+            Upload → Remove → Download.
+        </span>
+
+    </div>
+
+</section>
 
 </main>
 
+
 <footer>
+
     © 2026 Novix Tool • Simple • Fast • Free
+
 </footer>
 
 
-<script type="module">
+<script src="https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.7.0/dist/browser.js"></script>
 
-const fileInput = document.getElementById("fileInput");
-const statusBox = document.getElementById("status");
+<script>
+
+const fileInput =
+    document.getElementById("fileInput");
+
+const status =
+    document.getElementById("status");
 
 const originalPreview =
     document.getElementById("originalPreview");
@@ -514,511 +562,174 @@ const progressText =
 
 let resultBlob = null;
 let resultURL = null;
-let currentFile = null;
 
 
-/* -----------------------------
-   HELPERS
------------------------------ */
+status.textContent =
+    "✅ AI ready! Select an image.";
 
-function setStatus(message){
-    statusBox.textContent = message;
-}
-
-function setProgress(percent, text){
-
-    progressWrap.style.display = "block";
-
-    progressBar.style.width = percent + "%";
-
-    progressText.textContent = text;
-}
-
-function hideProgress(){
-    progressWrap.style.display = "none";
-}
-
-function showOriginal(file){
-
-    const url = URL.createObjectURL(file);
-
-    originalPreview.innerHTML =
-        `<img src="${url}" alt="Original image">`;
-}
-
-
-/* -----------------------------
-   LOAD TRANSFORMERS.JS
------------------------------ */
-
-let transformers;
-
-try{
-
-    transformers = await import(
-        "https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.8.1"
-    );
-
-    setStatus("✅ AI engine ready! Select an image.");
-
-}catch(error){
-
-    console.error(error);
-
-    setStatus(
-        "❌ AI engine could not load. Please refresh the page."
-    );
-}
-
-
-/* -----------------------------
-   AI MODEL
------------------------------ */
-
-let model = null;
-let processor = null;
-
-const MODEL =
-    "studioludens/birefnet-lite-512";
-
-
-async function loadAI(){
-
-    if(model && processor){
-        return;
-    }
-
-    setProgress(
-        5,
-        "🤖 Loading AI model..."
-    );
-
-    try{
-
-        /*
-         * First try WebGPU + FP16.
-         * This is the recommended browser setup
-         * for this model.
-         */
-
-        if(
-            "gpu" in navigator &&
-            transformers
-        ){
-
-            try{
-
-                setProgress(
-                    15,
-                    "⚡ Starting WebGPU AI..."
-                );
-
-                model =
-                    await transformers.AutoModel.from_pretrained(
-                        MODEL,
-                        {
-                            dtype:"fp16",
-                            device:"webgpu"
-                        }
-                    );
-
-                processor =
-                    await transformers.AutoProcessor.from_pretrained(
-                        MODEL
-                    );
-
-                setProgress(
-                    35,
-                    "✅ AI model loaded"
-                );
-
-                return;
-
-            }catch(webgpuError){
-
-                console.warn(
-                    "WebGPU failed:",
-                    webgpuError
-                );
-
-                model = null;
-                processor = null;
-            }
-        }
-
-
-        /*
-         * Fallback:
-         * CPU/WASM + FP32
-         */
-
-        setProgress(
-            15,
-            "🖥️ Using CPU fallback..."
-        );
-
-        model =
-            await transformers.AutoModel.from_pretrained(
-                MODEL,
-                {
-                    dtype:"fp32",
-                    device:"wasm"
-                }
-            );
-
-        processor =
-            await transformers.AutoProcessor.from_pretrained(
-                MODEL
-            );
-
-        setProgress(
-            35,
-            "✅ AI model loaded"
-        );
-
-    }catch(error){
-
-        console.error(error);
-
-        model = null;
-        processor = null;
-
-        throw new Error(
-            "AI model could not load: " +
-            (error.message || error)
-        );
-    }
-}
-
-
-/* -----------------------------
-   CONVERT MASK TO CORRECT SHAPE
------------------------------ */
-
-function getMaskTensor(output){
-
-    /*
-     * Official BiRefNet model output is logits.
-     * We also check alternate output names so the
-     * browser runtime doesn't break if the wrapper
-     * exposes the tensor differently.
-     */
-
-    let tensor =
-        output?.logits ??
-        output?.output_image ??
-        output?.output ??
-        null;
-
-    if(!tensor){
-
-        console.log("AI output:", output);
-
-        throw new Error(
-            "AI model returned no usable mask."
-        );
-    }
-
-    /*
-     * Tensor can be:
-     *
-     * [1,1,512,512]
-     * [1,512,512]
-     * [512,512]
-     */
-
-    if(
-        Array.isArray(tensor) ||
-        typeof tensor?.length === "number"
-    ){
-
-        tensor = tensor[0] ?? tensor;
-    }
-
-    /*
-     * Remove extra 1 dimensions.
-     */
-
-    while(
-        tensor?.dims &&
-        tensor.dims.length > 2
-    ){
-
-        tensor = tensor.squeeze();
-    }
-
-    return tensor;
-}
-
-
-/* -----------------------------
-   REMOVE BACKGROUND
------------------------------ */
-
-async function removeBackground(file){
-
-    currentFile = file;
-
-    resultBlob = null;
-
-    if(resultURL){
-        URL.revokeObjectURL(resultURL);
-        resultURL = null;
-    }
-
-    downloadBtn.disabled = true;
-
-    showOriginal(file);
-
-    resultPreview.innerHTML =
-        `<div class="placeholder">
-            Processing...
-        </div>`;
-
-    try{
-
-        setStatus(
-            "📂 Image selected: " + file.name
-        );
-
-        await loadAI();
-
-        setProgress(
-            40,
-            "🧠 Preparing image..."
-        );
-
-        /*
-         * Convert uploaded file into RawImage.
-         */
-
-        const image =
-            await transformers.RawImage.fromBlob(file);
-
-        setProgress(
-            50,
-            "🧠 AI is detecting the subject..."
-        );
-
-        /*
-         * Prepare model input.
-         */
-
-        const {
-            pixel_values
-        } =
-            await processor(image);
-
-        setProgress(
-            65,
-            "✨ Creating precise mask..."
-        );
-
-        /*
-         * Run BiRefNet.
-         */
-
-        const output =
-            await model({
-                input_image: pixel_values
-            });
-
-        console.log("BiRefNet output:", output);
-
-        /*
-         * Get mask/logits.
-         */
-
-        let maskTensor =
-            getMaskTensor(output);
-
-        /*
-         * Convert logits -> alpha 0..255
-         */
-
-        maskTensor =
-            maskTensor
-                .sigmoid()
-                .mul(255)
-                .to("uint8");
-
-        /*
-         * Resize mask back to original image size.
-         */
-
-        setProgress(
-            78,
-            "🎨 Refining image edges..."
-        );
-
-        const mask =
-            await maskTensor.resize(
-                image.width,
-                image.height,
-                {
-                    resample:3
-                }
-            );
-
-        /*
-         * Convert original image to RGBA.
-         */
-
-        const finalImage =
-            image.rgba();
-
-        /*
-         * Put AI alpha mask on image.
-         */
-
-        finalImage.putAlpha(mask);
-
-        setProgress(
-            90,
-            "📦 Preparing transparent PNG..."
-        );
-
-        /*
-         * Draw RawImage into canvas.
-         */
-
-        const canvas =
-            document.createElement("canvas");
-
-        canvas.width =
-            finalImage.width;
-
-        canvas.height =
-            finalImage.height;
-
-        const ctx =
-            canvas.getContext("2d");
-
-        const imageData =
-            new ImageData(
-                new Uint8ClampedArray(
-                    finalImage.data
-                ),
-                finalImage.width,
-                finalImage.height
-            );
-
-        ctx.putImageData(
-            imageData,
-            0,
-            0
-        );
-
-        /*
-         * Convert to PNG.
-         */
-
-        resultBlob =
-            await new Promise(
-                resolve =>
-                    canvas.toBlob(
-                        resolve,
-                        "image/png",
-                        1
-                    )
-            );
-
-        if(!resultBlob){
-
-            throw new Error(
-                "PNG creation failed."
-            );
-        }
-
-        resultURL =
-            URL.createObjectURL(
-                resultBlob
-            );
-
-        resultPreview.innerHTML =
-            `<img
-                src="${resultURL}"
-                alt="Background removed image"
-            >`;
-
-        downloadBtn.disabled = false;
-
-        setProgress(
-            100,
-            "✅ Background removed successfully!"
-        );
-
-        setStatus(
-            "🎉 Done! Your transparent PNG is ready."
-        );
-
-        setTimeout(
-            hideProgress,
-            1500
-        );
-
-    }catch(error){
-
-        console.error(
-            "Background removal error:",
-            error
-        );
-
-        hideProgress();
-
-        resultPreview.innerHTML =
-            `<div class="placeholder">
-                Processing failed
-            </div>`;
-
-        setStatus(
-            "❌ Processing failed: " +
-            (error.message || error)
-        );
-    }
-}
-
-
-/* -----------------------------
-   FILE UPLOAD
------------------------------ */
 
 fileInput.addEventListener(
     "change",
     async function(){
 
-        const file =
-            this.files?.[0];
+        const file = this.files[0];
 
         if(!file){
             return;
         }
 
-        if(
-            !file.type.startsWith("image/")
-        ){
 
-            setStatus(
-                "❌ Please select an image file."
-            );
+        if(!file.type.startsWith("image/")){
+
+            status.textContent =
+                "❌ Please select an image.";
 
             return;
         }
 
-        await removeBackground(file);
+
+        /* Original preview */
+
+        const originalURL =
+            URL.createObjectURL(file);
+
+        originalPreview.innerHTML =
+            `<img src="${originalURL}" alt="Original Image">`;
+
+
+        /* Reset result */
+
+        resultPreview.innerHTML =
+            `<div class="placeholder">
+                Processing...
+            </div>`;
+
+        downloadBtn.disabled = true;
+
+
+        progressWrap.style.display =
+            "block";
+
+        progressBar.style.width =
+            "5%";
+
+        progressText.textContent =
+            "Starting AI...";
+
+
+        status.textContent =
+            "🤖 AI is processing your image...";
+
+
+        try{
+
+            const blob =
+                await imglyRemoveBackground(
+                    file,
+                    {
+                        model:"isnet",
+                        output:{
+                            format:"image/png",
+                            quality:1
+                        },
+
+                        progress:
+                            (key,current,total) => {
+
+                                if(total){
+
+                                    const percent =
+                                        Math.min(
+                                            95,
+                                            Math.round(
+                                                (current / total) * 100
+                                            )
+                                        );
+
+                                    progressBar.style.width =
+                                        percent + "%";
+
+                                    progressText.textContent =
+                                        "AI processing: " +
+                                        percent +
+                                        "%";
+                                }
+                            }
+                    }
+                );
+
+
+            resultBlob = blob;
+
+
+            if(resultURL){
+                URL.revokeObjectURL(resultURL);
+            }
+
+
+            resultURL =
+                URL.createObjectURL(blob);
+
+
+            resultPreview.innerHTML =
+                `<img
+                    src="${resultURL}"
+                    alt="Background Removed"
+                >`;
+
+
+            progressBar.style.width =
+                "100%";
+
+            progressText.textContent =
+                "✅ Complete!";
+
+
+            status.textContent =
+                "🎉 Background removed successfully!";
+
+
+            downloadBtn.disabled =
+                false;
+
+
+            setTimeout(
+                () => {
+                    progressWrap.style.display =
+                        "none";
+                },
+                1500
+            );
+
+
+        }catch(error){
+
+            console.error(error);
+
+            progressWrap.style.display =
+                "none";
+
+            resultPreview.innerHTML =
+                `<div class="placeholder">
+                    ❌ Processing failed
+                </div>`;
+
+            status.textContent =
+                "❌ Error: " +
+                (error.message || "Unable to process image.");
+        }
+
     }
 );
 
 
-/* -----------------------------
-   DOWNLOAD
------------------------------ */
+/* Download */
 
 downloadBtn.addEventListener(
     "click",
     function(){
 
-        if(!resultBlob){
+        if(!resultBlob || !resultURL){
             return;
         }
 
@@ -1040,19 +751,13 @@ downloadBtn.addEventListener(
 );
 
 
-/* -----------------------------
-   RESET
------------------------------ */
+/* Reset */
 
 resetBtn.addEventListener(
     "click",
     function(){
 
         fileInput.value = "";
-
-        currentFile = null;
-
-        resultBlob = null;
 
         if(resultURL){
 
@@ -1062,6 +767,8 @@ resetBtn.addEventListener(
 
             resultURL = null;
         }
+
+        resultBlob = null;
 
         originalPreview.innerHTML =
             `<div class="placeholder">
@@ -1075,21 +782,15 @@ resetBtn.addEventListener(
 
         downloadBtn.disabled = true;
 
-        hideProgress();
+        progressWrap.style.display =
+            "none";
 
-        setStatus(
-            "✅ AI ready! Select an image."
-        );
+        status.textContent =
+            "✅ AI ready! Select an image.";
     }
 );
 
+</script>
 
-/* -----------------------------
-   GLOBAL ERROR HANDLER
------------------------------ */
-
-window.addEventListener(
-    "error",
-    function(event){
-
-    
+</body>
+            </html>
