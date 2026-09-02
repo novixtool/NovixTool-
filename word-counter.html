@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Word Counter - Novix Tool</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f3f4f6;
+  color:#111827;
+}
+
+.container{
+  max-width:700px;
+  margin:30px auto;
+  padding:15px;
+}
+
+.card{
+  background:white;
+  padding:25px;
+  border-radius:18px;
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+h1{
+  text-align:center;
+  margin-bottom:8px;
+}
+
+.subtitle{
+  text-align:center;
+  color:#6b7280;
+  margin-bottom:25px;
+}
+
+textarea{
+  width:100%;
+  min-height:280px;
+  padding:15px;
+  border:1px solid #d1d5db;
+  border-radius:10px;
+  font-size:16px;
+  line-height:1.6;
+  resize:vertical;
+  outline:none;
+}
+
+textarea:focus{
+  border-color:#111827;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-top:20px;
+}
+
+.stat{
+  background:#f3f4f6;
+  padding:18px;
+  border-radius:12px;
+  text-align:center;
+}
+
+.number{
+  font-size:25px;
+  font-weight:bold;
+}
+
+.label{
+  color:#6b7280;
+  margin-top:5px;
+}
+
+button{
+  width:100%;
+  padding:13px;
+  margin-top:20px;
+  border:0;
+  border-radius:9px;
+  background:#111827;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.back{
+  display:block;
+  text-align:center;
+  margin-top:20px;
+  color:#111827;
+  text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<h1>Word Counter</h1>
+
+<p class="subtitle">
+Count words, characters, sentences and reading time.
+</p>
+
+<textarea
+id="textInput"
+placeholder="Start typing or paste your text here..."
+></textarea>
+
+<div class="stats">
+
+<div class="stat">
+<div class="number" id="words">0</div>
+<div class="label">Words</div>
+</div>
+
+<div class="stat">
+<div class="number" id="characters">0</div>
+<div class="label">Characters</div>
+</div>
+
+<div class="stat">
+<div class="number" id="sentences">0</div>
+<div class="label">Sentences</div>
+</div>
+
+<div class="stat">
+<div class="number" id="readingTime">0 min</div>
+<div class="label">Reading Time</div>
+</div>
+
+</div>
+
+<button id="clearBtn">
+Clear Text
+</button>
+
+<a class="back" href="index.html">
+← Back to Novix Tool
+</a>
+
+</div>
+
+</div>
+
+<script>
+
+const textInput =
+document.getElementById("textInput");
+
+const words =
+document.getElementById("words");
+
+const characters =
+document.getElementById("characters");
+
+const sentences =
+document.getElementById("sentences");
+
+const readingTime =
+document.getElementById("readingTime");
+
+const clearBtn =
+document.getElementById("clearBtn");
+
+
+function countText(){
+
+  const text = textInput.value;
+
+  const trimmed = text.trim();
+
+  let wordCount = 0;
+
+  if(trimmed.length > 0){
+
+    wordCount =
+      trimmed.split(/\s+/).length;
+
+  }
+
+  const characterCount =
+    text.length;
+
+  let sentenceCount = 0;
+
+  if(trimmed.length > 0){
+
+    const matches =
+      trimmed.match(/[.!?]+/g);
+
+    sentenceCount =
+      matches ? matches.length : 0;
+
+  }
+
+  const minutes =
+    wordCount > 0
+    ? Math.ceil(wordCount / 200)
+    : 0;
+
+  words.textContent =
+    wordCount;
+
+  characters.textContent =
+    characterCount;
+
+  sentences.textContent =
+    sentenceCount;
+
+  readingTime.textContent =
+    minutes + " min";
+
+}
+
+
+textInput.addEventListener(
+  "input",
+  countText
+);
+
+
+clearBtn.addEventListener(
+  "click",
+  function(){
+
+    textInput.value = "";
+
+    countText();
+
+    textInput.focus();
+
+  }
+);
+
+</script>
+
+</body>
+  </html>
