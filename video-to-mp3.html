@@ -248,6 +248,7 @@
 
   </div>
 
+
   <div class="card">
 
     <label class="upload" for="videoInput">
@@ -266,15 +267,18 @@
 
     </label>
 
+
     <input
       type="file"
       id="videoInput"
       accept="video/*"
     >
 
+
     <div class="status" id="status">
       👆 Select a video to start
     </div>
+
 
     <div class="video-box" id="videoBox">
 
@@ -285,6 +289,7 @@
       ></video>
 
     </div>
+
 
     <div class="progress-wrap" id="progressWrap">
 
@@ -297,6 +302,7 @@
       </div>
 
     </div>
+
 
     <div class="buttons" id="buttons">
 
@@ -316,6 +322,7 @@
 
     </div>
 
+
     <a
       id="downloadBtn"
       class="download"
@@ -324,12 +331,14 @@
       ⬇️ Download MP3
     </a>
 
+
     <div class="note">
       Your video is processed directly in your browser.
       It is not uploaded to our server.
     </div>
 
   </div>
+
 
   <a
     class="back"
@@ -343,7 +352,7 @@
 
 <!-- =========================================
      FFmpeg.js
-     Files are in the GitHub repository root
+     Both files are in repository root
 ========================================= -->
 
 <script src="./ffmpeg-mp4.js"></script>
@@ -387,7 +396,7 @@ const downloadBtn =
 
 let selectedFile = null;
 let outputUrl = null;
-let ffmpeg = null;
+let worker = null;
 
 
 /* =========================================
@@ -404,27 +413,46 @@ videoInput.addEventListener("change", function () {
 
   selectedFile = file;
 
+
   if (outputUrl) {
+
     URL.revokeObjectURL(outputUrl);
+
     outputUrl = null;
+
   }
 
+
   downloadBtn.style.display = "none";
+
 
   const videoURL =
     URL.createObjectURL(file);
 
-  videoPreview.src = videoURL;
 
-  videoBox.style.display = "block";
+  videoPreview.src =
+    videoURL;
 
-  buttons.style.display = "flex";
 
-  progressWrap.style.display = "none";
+  videoBox.style.display =
+    "block";
 
-  progress.style.width = "0%";
 
-  progressText.textContent = "0%";
+  buttons.style.display =
+    "flex";
+
+
+  progressWrap.style.display =
+    "none";
+
+
+  progress.style.width =
+    "0%";
+
+
+  progressText.textContent =
+    "0%";
+
 
   status.innerHTML =
     "📂 Video selected:<br>" +
@@ -451,255 +479,406 @@ convertBtn.addEventListener("click", async function () {
 
   }
 
+
+  convertBtn.disabled =
+    true;
+
+  resetBtn.disabled =
+    true;
+
+
+  progressWrap.style.display =
+    "block";
+
+
+  progress.style.width =
+    "0%";
+
+
+  progressText.textContent =
+    "Starting converter...";
+
+
+  status.innerHTML =
+    "📦 Starting video converter...";
+
+
   try {
 
-    convertBtn.disabled = true;
-    resetBtn.disabled = true;
+    /*
+      Read selected video
+    */
 
-    progressWrap.style.display = "block";
-
-    progress.style.width = "0%";
-
-    progressText.textContent =
-      "Loading converter...";
+    const buffer =
+      await selectedFile.arrayBuffer();
 
 
-    /* -------------------------------------
-       Check FFmpeg.js
-    ------------------------------------- */
+    const videoData =
+      new Uint8Array(buffer);
 
-    if (typeof FFmpeg === "undefined") {
 
-      throw new Error(
-        "FFmpeg library not found."
+    /*
+      Create FFmpeg worker
+    */
+
+    worker =
+      new Worker(
+        "./ffmpeg-worker-mp4.js"
       );
 
-    }
+
+    worker.onmessage =
+      function (event) {
+
+        const message =
+          event.data;
 
 
-    status.innerHTML =
-      "📦 Loading video converter...<br>" +
-      "Please wait...";
+        /*
+          FFmpeg console output
+        */
+
+        if (message.type === "stdout") {
+
+          const text =
+            message.data || "";
+
+          console.log(text);
 
 
-    /*
-      Create FFmpeg instance.
-    */
+          /*
+            Try to detect FFmpeg progress
+          */
 
-    ffmpeg = new FFmpeg();
+          const match =
+            text.match(
+              /time=\s*([0-9:.]+)/i
+            );
 
 
-    /*
-      FFmpeg progress event.
-    */
+          if (match) {
 
-    if (typeof ffmpeg.setProgress === "function") {
+            progress.style.width =
+              "50%";
 
-      ffmpeg.setProgress(function (progressValue) {
+            progressText.textContent =
+              "Converting...";
 
-        const percent =
-          Math.max(
-            0,
-            Math.min(
-              100,
-              Math.round(progressValue * 100)
-            )
+          }
+
+        }
+
+
+        /*
+          FFmpeg error/output
+        */
+
+        if (message.type === "stderr") {
+
+          console.log(
+            "FFmpeg:",
+            message.data
           );
 
+        }
+
+
+        /*
+          Conversion finished
+        */
+
+        if (message.type === "done") {
+
+          try {
+
+            const files =
+              message.data &&
+              message.data.MEMFS;
+
+
+            if (!files || !files.length) {
+
+              throw new Error(
+                "No output file was created."
+              );
+
+            }
+
+
+            /*
+              Find MP3 output
+            */
+
+            let mp3File =
+              null;
+
+
+            for (
+              let i = 0;
+              i < files.length;
+              i++
+            ) {
+
+              if (
+                files[i].name ===
+                "novix_audio.mp3"
+              ) {
+
+                mp3File =
+                  files[i];
+
+                break;
+
+              }
+
+            }
+
+
+            /*
+              Fallback to first output
+            */
+
+            if (!mp3File) {
+
+              for (
+                let i = 0;
+                i < files.length;
+                i++
+              ) {
+
+                if (
+                  files[i].name
+                    .toLowerCase()
+                    .endsWith(".mp3")
+                ) {
+
+                  mp3File =
+                    files[i];
+
+                  break;
+
+                }
+
+              }
+
+            }
+
+
+            if (!mp3File) {
+
+              throw new Error(
+                "MP3 output not found."
+              );
+
+            }
+
+
+            /*
+              Create MP3 blob
+            */
+
+            const blob =
+              new Blob(
+                [mp3File.data],
+                {
+                  type: "audio/mpeg"
+                }
+              );
+
+
+            outputUrl =
+              URL.createObjectURL(
+                blob
+              );
+
+
+            downloadBtn.href =
+              outputUrl;
+
+
+            downloadBtn.style.display =
+              "block";
+
+
+            progress.style.width =
+              "100%";
+
+
+            progressText.textContent =
+              "100% Complete";
+
+
+            status.innerHTML =
+              "✅ <b>Conversion complete!</b><br>" +
+              "Your MP3 is ready to download.";
+
+
+            /*
+              Stop worker
+            */
+
+            worker.terminate();
+
+            worker = null;
+
+
+          }
+          catch (error) {
+
+            console.error(error);
+
+            status.innerHTML =
+              "❌ <b>Conversion failed.</b><br><br>" +
+              "MP3 file could not be created.";
+
+          }
+
+
+          convertBtn.disabled =
+            false;
+
+          resetBtn.disabled =
+            false;
+
+        }
+
+      };
+
+
+    worker.onerror =
+      function (error) {
+
+        console.error(
+          "Worker error:",
+          error
+        );
+
+
+        status.innerHTML =
+          "❌ <b>Conversion failed.</b><br><br>" +
+          "FFmpeg could not process this video.";
+
+
         progress.style.width =
-          percent + "%";
+          "0%";
+
 
         progressText.textContent =
-          "Converting... " +
-          percent +
-          "%";
+          "Conversion failed";
 
-      });
 
-    }
+        convertBtn.disabled =
+          false;
+
+        resetBtn.disabled =
+          false;
+
+
+        if (worker) {
+
+          worker.terminate();
+
+          worker = null;
+
+        }
+
+      };
+
+
+    /*
+      Start FFmpeg
+    */
+
+    progress.style.width =
+      "10%";
+
+    progressText.textContent =
+      "Reading video...";
 
 
     status.innerHTML =
       "📥 Reading your video...";
 
 
-    /*
-      Read video file.
-    */
+    worker.postMessage({
 
-    const arrayBuffer =
-      await selectedFile.arrayBuffer();
+      type: "run",
 
+      arguments: [
 
-    const inputName =
-      "input_video";
+        "-i",
+        "input_video.mp4",
 
+        "-vn",
 
-    const outputName =
-      "novix_audio.mp3";
+        "-map",
+        "0:a:0",
 
+        "-codec:a",
+        "libmp3lame",
 
-    /*
-      Write video into FFmpeg.
-    */
+        "-b:a",
+        "192k",
 
-    ffmpeg.FS(
-      "writeFile",
-      inputName,
-      new Uint8Array(arrayBuffer)
-    );
+        "-ar",
+        "44100",
 
+        "novix_audio.mp3"
 
-    status.innerHTML =
-      "🎵 Converting video to MP3...";
+      ],
 
+      MEMFS: [
 
-    progress.style.width =
-      "10%";
-
-    progressText.textContent =
-      "Converting... 10%";
-
-
-    /*
-      Convert video audio to MP3.
-    */
-
-    await ffmpeg.run(
-
-      "-i",
-      inputName,
-
-      "-vn",
-
-      "-map",
-      "0:a:0",
-
-      "-codec:a",
-      "libmp3lame",
-
-      "-b:a",
-      "192k",
-
-      "-ar",
-      "44100",
-
-      outputName
-
-    );
-
-
-    progress.style.width =
-      "90%";
-
-    progressText.textContent =
-      "Preparing MP3...";
-
-
-    status.innerHTML =
-      "📦 Preparing MP3 download...";
-
-
-    /*
-      Read MP3 output.
-    */
-
-    const data =
-      ffmpeg.FS(
-        "readFile",
-        outputName
-      );
-
-
-    const blob =
-      new Blob(
-        [data.buffer],
         {
-          type: "audio/mpeg"
+          name: "input_video.mp4",
+          data: videoData
         }
-      );
 
+      ]
 
-    outputUrl =
-      URL.createObjectURL(blob);
-
-
-    downloadBtn.href =
-      outputUrl;
-
-
-    downloadBtn.style.display =
-      "block";
-
-
-    progress.style.width =
-      "100%";
-
-    progressText.textContent =
-      "100% Complete";
+    });
 
 
     status.innerHTML =
-      "✅ <b>Conversion complete!</b><br>" +
-      "Your MP3 is ready to download.";
+      "🎵 <b>Converting video to MP3...</b>";
 
 
-    /*
-      Clean FFmpeg files.
-    */
+    progress.style.width =
+      "20%";
 
-    try {
+    progressText.textContent =
+      "Converting...";
 
-      ffmpeg.FS(
-        "unlink",
-        inputName
-      );
-
-      ffmpeg.FS(
-        "unlink",
-        outputName
-      );
-
-    } catch (cleanupError) {
-
-      console.log(
-        "Cleanup:",
-        cleanupError
-      );
-
-    }
 
   }
-
   catch (error) {
 
     console.error(
-      "FFmpeg error:",
+      "Conversion error:",
       error
     );
 
 
     status.innerHTML =
       "❌ <b>Conversion failed.</b><br><br>" +
-      "This video may not contain an audio track, " +
-      "or the format may not be supported.<br><br>" +
-      "Try another MP4 video.";
+      "Try a smaller MP4 video.";
 
 
     progress.style.width =
       "0%";
 
+
     progressText.textContent =
       "Conversion failed";
 
+
+    convertBtn.disabled =
+      false;
+
+    resetBtn.disabled =
+      false;
+
   }
-
-
-  convertBtn.disabled =
-    false;
-
-  resetBtn.disabled =
-    false;
 
 });
 
@@ -709,6 +888,15 @@ convertBtn.addEventListener("click", async function () {
 ========================================= */
 
 resetBtn.addEventListener("click", function () {
+
+  if (worker) {
+
+    worker.terminate();
+
+    worker = null;
+
+  }
+
 
   if (outputUrl) {
 
@@ -723,12 +911,15 @@ resetBtn.addEventListener("click", function () {
 
   selectedFile = null;
 
-  videoInput.value = "";
+
+  videoInput.value =
+    "";
 
 
   videoPreview.removeAttribute(
     "src"
   );
+
 
   videoPreview.load();
 
@@ -760,9 +951,17 @@ resetBtn.addEventListener("click", function () {
   status.innerHTML =
     "👆 Select a video to start";
 
+
+  convertBtn.disabled =
+    false;
+
+
+  resetBtn.disabled =
+    false;
+
 });
 
 </script>
 
 </body>
-</html>
+  </html>
